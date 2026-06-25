@@ -1,4 +1,5 @@
-import { FileText, Home, Layers, Map, ShieldCheck, Target } from 'lucide-react';
+import { useState } from 'react';
+import { FileText, Home, Map, ShieldCheck, Target } from 'lucide-react';
 import { AlertsPanel } from '../components/alerts/AlertsPanel';
 import { ChecklistPanel } from '../components/checklist/ChecklistPanel';
 import { Badge } from '../components/common/Badge';
@@ -39,6 +40,9 @@ export function RecommendationCard({ onReport }: { onReport?: () => void }) {
 }
 
 export function DashboardPage({ property, checklist, onToggleChecklist, onReport }: DashboardPageProps) {
+  const [selectedAlertId, setSelectedAlertId] = useState(1);
+  const [hoveredAlertId, setHoveredAlertId] = useState<number | undefined>();
+
   return (
     <main className="desktop-app dashboard-app">
       <DesktopHeader subtitle="Assistente de pré-retificação do CAR" />
@@ -124,15 +128,22 @@ export function DashboardPage({ property, checklist, onToggleChecklist, onReport
               <Map size={20} />
               <h2>Mapa de análise</h2>
             </div>
-            <button type="button">
-              <Layers size={18} /> Camadas
-            </button>
           </div>
-          <MapAnalysis property={property} />
+          <MapAnalysis
+            hoveredAlertId={hoveredAlertId}
+            onSelectAlert={(alert) => setSelectedAlertId(alert.id)}
+            property={property}
+            selectedAlertId={selectedAlertId}
+          />
         </section>
 
         <aside className="side-stack">
-          <AlertsPanel alerts={property.alerts} />
+          <AlertsPanel
+            alerts={property.alerts}
+            onHoverAlert={setHoveredAlertId}
+            onSelectAlert={(alert) => setSelectedAlertId(alert.id)}
+            selectedAlertId={selectedAlertId}
+          />
           <ChecklistPanel checklist={checklist} onToggle={onToggleChecklist} />
         </aside>
       </section>

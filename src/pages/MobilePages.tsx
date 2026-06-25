@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AlertTriangle, ArrowRight, ClipboardCheck, FileText, Layers, Map, Target } from 'lucide-react';
 import { AlertCard } from '../components/alerts/AlertCard';
 import { ChecklistPanel } from '../components/checklist/ChecklistPanel';
@@ -49,10 +49,20 @@ export function MobileSummaryPage({ property, onNavigate }: MobilePageProps) {
 
 export function MobileMapPage({ property, onNavigate }: MobilePageProps) {
   const sheetRef = useRef<HTMLDivElement>(null);
+  const [selectedAlertId, setSelectedAlertId] = useState(1);
 
   useEffect(() => {
     sheetRef.current?.scrollTo({ top: 0 });
   }, []);
+
+  const selectAlert = (alertId: number) => {
+    setSelectedAlertId(alertId);
+    window.setTimeout(() => {
+      sheetRef.current
+        ?.querySelector(`[data-alert-id="${alertId}"]`)
+        ?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 80);
+  };
 
   return (
     <main className="mobile-screen">
@@ -60,7 +70,12 @@ export function MobileMapPage({ property, onNavigate }: MobilePageProps) {
         <div className="mobile-status">9:41</div>
         <ScreenHeader title="Mapa e alertas" onBack={() => onNavigate('summary')} right={<Layers size={21} />} />
         <div className="mobile-map-wrapper">
-          <MapAnalysis property={property} variant="mobile" />
+          <MapAnalysis
+            onSelectAlert={(alert) => selectAlert(alert.id)}
+            property={property}
+            selectedAlertId={selectedAlertId}
+            variant="mobile"
+          />
         </div>
         <div className="mobile-sheet" ref={sheetRef}>
           <section className="mobile-alerts-panel">
@@ -70,7 +85,13 @@ export function MobileMapPage({ property, onNavigate }: MobilePageProps) {
             </div>
             <div className="mobile-alert-list">
               {property.alerts.map((alert) => (
-                <AlertCard alert={alert} detailed key={alert.id} />
+                <AlertCard
+                  alert={alert}
+                  detailed
+                  key={alert.id}
+                  onSelect={() => selectAlert(alert.id)}
+                  selected={selectedAlertId === alert.id}
+                />
               ))}
             </div>
           </section>

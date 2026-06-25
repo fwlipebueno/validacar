@@ -5,16 +5,30 @@ import type { AlertItem } from '../../types';
 interface AlertsPanelProps {
   alerts: AlertItem[];
   detailed?: boolean;
+  selectedAlertId?: number;
+  onSelectAlert?: (alert: AlertItem) => void;
+  onHoverAlert?: (alertId?: number) => void;
 }
 
-export function AlertsPanel({ alerts, detailed = false }: AlertsPanelProps) {
+export function AlertsPanel({ alerts, detailed = false, selectedAlertId, onSelectAlert, onHoverAlert }: AlertsPanelProps) {
   return (
     <section className="card alerts-panel">
       <div className="panel-title">
         <AlertTriangle size={22} />
         <h2>Alertas encontrados ({alerts.length})</h2>
       </div>
-      <div className="alert-list">{alerts.map((alert) => <AlertCard alert={alert} detailed={detailed} key={alert.id} />)}</div>
+      <div className="alert-list">
+        {alerts.map((alert) => (
+          <AlertCard
+            alert={alert}
+            detailed={detailed}
+            key={alert.id}
+            onSelect={onSelectAlert}
+            onHover={onHoverAlert}
+            selected={selectedAlertId === alert.id}
+          />
+        ))}
+      </div>
     </section>
   );
 }
