@@ -1,0 +1,112 @@
+import { useEffect, useRef } from 'react';
+import { AlertTriangle, ArrowRight, ClipboardCheck, FileText, Layers, Map, Target } from 'lucide-react';
+import { AlertCard } from '../components/alerts/AlertCard';
+import { ChecklistPanel } from '../components/checklist/ChecklistPanel';
+import { Badge } from '../components/common/Badge';
+import { Notice } from '../components/common/Notice';
+import { ScreenHeader } from '../components/common/ScreenHeader';
+import { BottomNav } from '../components/layout/BottomNav';
+import { MapAnalysis } from '../components/map/MapAnalysis';
+import { MetricsGrid } from '../components/property/MetricsGrid';
+import { PropertySummary } from '../components/property/PropertySummary';
+import { RecommendationCard } from './DashboardPage';
+import type { ChecklistItem, RuralProperty, View } from '../types';
+
+interface MobilePageProps {
+  property: RuralProperty;
+  checklist: ChecklistItem[];
+  onNavigate: (view: View) => void;
+  onToggleChecklist: (id: string) => void;
+}
+
+export function MobileSummaryPage({ property, onNavigate }: MobilePageProps) {
+  return (
+    <main className="mobile-screen">
+      <div className="phone-frame app-phone">
+        <div className="mobile-status">9:41</div>
+        <ScreenHeader title="Resumo do imóvel" />
+        <div className="scroll-area">
+          <PropertySummary property={property} />
+          <article className="card action-card">
+            <div className="field-row">
+              <span>Pode retificar agora?</span>
+              <Badge tone="red">Não</Badge>
+            </div>
+            <p>{property.rectificationMessage}</p>
+          </article>
+          <MetricsGrid property={property} />
+          <button className="outline-button map-button" type="button" onClick={() => onNavigate('map')}>
+            <Map size={23} />
+            Ver no mapa
+          </button>
+          <Notice />
+        </div>
+        <BottomNav current="summary" onNavigate={onNavigate} />
+      </div>
+    </main>
+  );
+}
+
+export function MobileMapPage({ property, onNavigate }: MobilePageProps) {
+  const sheetRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    sheetRef.current?.scrollTo({ top: 0 });
+  }, []);
+
+  return (
+    <main className="mobile-screen">
+      <div className="phone-frame app-phone">
+        <div className="mobile-status">9:41</div>
+        <ScreenHeader title="Mapa e alertas" onBack={() => onNavigate('summary')} right={<Layers size={21} />} />
+        <div className="mobile-map-wrapper">
+          <MapAnalysis property={property} variant="mobile" />
+        </div>
+        <div className="mobile-sheet" ref={sheetRef}>
+          <section className="mobile-alerts-panel">
+            <div className="panel-title">
+              <AlertTriangle size={21} />
+              <h2>Alertas encontrados ({property.alerts.length})</h2>
+            </div>
+            <div className="mobile-alert-list">
+              {property.alerts.map((alert) => (
+                <AlertCard alert={alert} detailed key={alert.id} />
+              ))}
+            </div>
+          </section>
+          <button className="next-step-card mobile-next" type="button">
+            <Target size={26} />
+            <span>
+              <strong>Próximo melhor passo</strong>
+              Revisar perímetro do imóvel e tratar a sobreposição identificada.
+            </span>
+          </button>
+          <button className="primary-button" type="button" onClick={() => onNavigate('report')}>
+            <FileText size={21} />
+            Gerar relatório
+            <ArrowRight size={20} />
+          </button>
+          <Notice />
+        </div>
+        <BottomNav current="map" onNavigate={onNavigate} />
+      </div>
+    </main>
+  );
+}
+
+export function MobileChecklistPage({ property, checklist, onNavigate, onToggleChecklist }: MobilePageProps) {
+  return (
+    <main className="mobile-screen">
+      <div className="phone-frame app-phone">
+        <div className="mobile-status">9:41</div>
+        <ScreenHeader title="Checklist" onBack={() => onNavigate('map')} right={<ClipboardCheck size={21} />} />
+        <div className="scroll-area">
+          <ChecklistPanel checklist={checklist} onToggle={onToggleChecklist} />
+          <RecommendationCard onReport={() => onNavigate('report')} />
+          <Notice />
+        </div>
+        <BottomNav current="checklist" onNavigate={onNavigate} />
+      </div>
+    </main>
+  );
+}
