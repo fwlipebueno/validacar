@@ -1,8 +1,18 @@
 # ValidaCAR
+
+<a id="english"></a>
+
+<p align="right">
+  <kbd><a href="#english">English</a></kbd>
+  <kbd><a href="#portuguese">Português</a></kbd>
+</p>
+
 <p align="center">
-  <a href="#english"><kbd>English</kbd></a>
-  ·
-  <a href="#português"><kbd>Português</kbd></a>
+  <strong>CAR pre-rectification assistant for clearer rural environmental registration.</strong>
+</p>
+
+<p align="center">
+  ValidaCAR turns technical CAR data into clear alerts, map-based analysis, and an actionable checklist.
 </p>
 
 ---
@@ -75,6 +85,13 @@ Planning / MVP definition.
 See [docs/mvp-validacar.md](docs/mvp-validacar.md).
 
 ---
+
+<a id="portuguese"></a>
+
+<p align="right">
+  <kbd><a href="#english">English</a></kbd>
+  <kbd><a href="#portuguese">Português</a></kbd>
+</p>
 
 ## Português
 O ValidaCAR é um assistente de pré-retificação do CAR que transforma dados técnicos do cadastro em alertas claros, análise visual no mapa e checklist de ação.
