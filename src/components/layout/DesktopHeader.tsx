@@ -4,12 +4,13 @@ import { Logo } from '../common/Logo';
 interface DesktopHeaderProps {
   subtitle: string;
   onBack?: () => void;
+  onHome?: () => void;
 }
 
-export function DesktopHeader({ subtitle, onBack }: DesktopHeaderProps) {
+export function DesktopHeader({ subtitle, onBack, onHome }: DesktopHeaderProps) {
   return (
     <header className="desktop-topbar">
-      <Logo />
+      <Logo onClick={onHome} />
       <span className="topbar-separator" />
       <span>{subtitle}</span>
       <div className="topbar-actions">

@@ -11,6 +11,7 @@ import type { ChecklistItem, RuralProperty } from '../types';
 interface DashboardPageProps {
   property: RuralProperty;
   checklist: ChecklistItem[];
+  onHome: () => void;
   onToggleChecklist: (id: string) => void;
   onReport: () => void;
 }
@@ -39,13 +40,13 @@ export function RecommendationCard({ onReport }: { onReport?: () => void }) {
   );
 }
 
-export function DashboardPage({ property, checklist, onToggleChecklist, onReport }: DashboardPageProps) {
+export function DashboardPage({ property, checklist, onHome, onToggleChecklist, onReport }: DashboardPageProps) {
   const [selectedAlertId, setSelectedAlertId] = useState(1);
   const [hoveredAlertId, setHoveredAlertId] = useState<number | undefined>();
 
   return (
     <main className="desktop-app dashboard-app">
-      <DesktopHeader subtitle="Assistente de pré-retificação do CAR" />
+      <DesktopHeader subtitle="Assistente de pré-retificação do CAR" onHome={onHome} />
 
       <section className="desktop-hero compact-hero">
         <div className="hero-icon">

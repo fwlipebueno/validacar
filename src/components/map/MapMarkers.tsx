@@ -2,10 +2,12 @@ import L from 'leaflet';
 import { Marker, Popup, useMap } from 'react-leaflet';
 import { Badge } from '../common/Badge';
 import type { AlertItem } from '../../types';
+import type { VisibleMapLayers } from './mapTypes';
 
 interface MapMarkersProps {
   alerts: AlertItem[];
   hoveredAlertId?: number;
+  layers: VisibleMapLayers;
   selectedAlertId?: number;
   onSelectAlert?: (alert: AlertItem) => void;
 }
@@ -25,12 +27,18 @@ function createAlertIcon(alert: AlertItem, active: boolean) {
   });
 }
 
-export function MapMarkers({ alerts, hoveredAlertId, selectedAlertId, onSelectAlert }: MapMarkersProps) {
+function isMarkerVisible(alert: AlertItem, layers: VisibleMapLayers) {
+  if (alert.id === 1) return layers.overlap;
+  if (alert.id === 3) return layers.restricted;
+  return true;
+}
+
+export function MapMarkers({ alerts, hoveredAlertId, layers, selectedAlertId, onSelectAlert }: MapMarkersProps) {
   const map = useMap();
 
   return (
     <>
-      {alerts.map((alert) => {
+      {alerts.filter((alert) => isMarkerVisible(alert, layers)).map((alert) => {
         const active = alert.id === selectedAlertId || alert.id === hoveredAlertId;
 
         return (

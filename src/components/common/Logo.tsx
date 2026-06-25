@@ -1,6 +1,10 @@
-export function Logo() {
-  return (
-    <div className="logo-mark" aria-label="ValidaCAR">
+interface LogoProps {
+  onClick?: () => void;
+}
+
+export function Logo({ onClick }: LogoProps) {
+  const content = (
+    <>
       <svg className="logo-symbol" viewBox="0 0 72 64" aria-hidden="true">
         <defs>
           <linearGradient id="leaf-main" x1="10" x2="58" y1="8" y2="58" gradientUnits="userSpaceOnUse">
@@ -31,6 +35,20 @@ export function Logo() {
       <strong>
         Valida<span>CAR</span>
       </strong>
+    </>
+  );
+
+  if (onClick) {
+    return (
+      <button className="logo-mark logo-button" type="button" aria-label="Voltar para a home" onClick={onClick}>
+        {content}
+      </button>
+    );
+  }
+
+  return (
+    <div className="logo-mark" aria-label="ValidaCAR">
+      {content}
     </div>
   );
 }

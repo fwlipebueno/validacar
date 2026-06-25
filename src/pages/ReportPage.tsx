@@ -9,15 +9,16 @@ interface ReportPageProps {
   property: RuralProperty;
   checklist: ChecklistItem[];
   onBack: () => void;
+  onHome: () => void;
   onNavigate: (view: View) => void;
 }
 
-export function ReportPage({ property, checklist, onBack, onNavigate }: ReportPageProps) {
+export function ReportPage({ property, checklist, onBack, onHome, onNavigate }: ReportPageProps) {
   return (
     <>
       <div className="desktop-only-shell">
         <main className="desktop-app report-desktop-app">
-          <DesktopHeader subtitle="Relatório orientativo de pré-retificação" onBack={onBack} />
+          <DesktopHeader subtitle="Relatório orientativo de pré-retificação" onBack={onBack} onHome={onHome} />
           <section className="desktop-report-page">
             <div className="report-hero-line">
               <div>

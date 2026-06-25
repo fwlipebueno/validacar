@@ -28,7 +28,15 @@ export default function App() {
   }
 
   if (view === 'report') {
-    return <ReportPage checklist={checklist} onBack={() => setView('map')} onNavigate={setView} property={property} />;
+    return (
+      <ReportPage
+        checklist={checklist}
+        onBack={() => setView('summary')}
+        onHome={() => setView('home')}
+        onNavigate={setView}
+        property={property}
+      />
+    );
   }
 
   return (
@@ -36,6 +44,7 @@ export default function App() {
       <div className="desktop-only-shell">
         <DashboardPage
           checklist={checklist}
+          onHome={() => setView('home')}
           onReport={() => setView('report')}
           onToggleChecklist={toggleChecklist}
           property={property}

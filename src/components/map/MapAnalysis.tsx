@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
-import { formatArea } from '../../utils/format';
 import type { AlertItem, RuralProperty } from '../../types';
 import { MapControls } from './MapControls';
+import { MapLabels } from './MapLabels';
 import { MapLayers } from './MapLayers';
 import { MapLegend } from './MapLegend';
 import { MapMarkers } from './MapMarkers';
@@ -53,18 +53,18 @@ export function MapAnalysis({
         <MapMarkers
           alerts={property.alerts}
           hoveredAlertId={hoveredAlertId}
+          layers={layers}
           onSelectAlert={onSelectAlert}
           selectedAlertId={selectedAlertId}
         />
+        <MapLabels property={property} />
         <MapControls
           layers={layers}
           onFitProperty={() => setFitRequest((request) => request + 1)}
           onToggleLayer={toggleLayer}
         />
       </MapContainer>
-      <div className="map-area-label">{formatArea(property.calculatedAreaHa)} ha</div>
       <div className="map-scale">100 m</div>
-      <div className="road-label">MG-329</div>
       <MapLegend />
     </div>
   );

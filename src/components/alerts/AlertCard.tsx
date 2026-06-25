@@ -42,7 +42,11 @@ export function AlertCard({ alert, detailed = false, selected = false, onSelect,
   }
 
   return (
-    <article className={`alert-row row-${alert.color}${selected ? ' selected-alert' : ''}`} {...interactionProps}>
+    <article
+      className={`alert-row row-${alert.color}${selected ? ' selected-alert' : ''}`}
+      data-alert-id={alert.id}
+      {...interactionProps}
+    >
       <span className={`alert-number marker-${alert.color}`}>{alert.id}</span>
       <div>
         <strong>{alert.title}</strong>
