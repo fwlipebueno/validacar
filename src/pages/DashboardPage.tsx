@@ -41,7 +41,7 @@ export function RecommendationCard({ onReport }: { onReport?: () => void }) {
 }
 
 export function DashboardPage({ property, checklist, onHome, onToggleChecklist, onReport }: DashboardPageProps) {
-  const [selectedAlertId, setSelectedAlertId] = useState(1);
+  const [selectedAlertId, setSelectedAlertId] = useState<number | undefined>();
   const [hoveredAlertId, setHoveredAlertId] = useState<number | undefined>();
 
   return (

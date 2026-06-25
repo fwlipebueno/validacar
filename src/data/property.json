@@ -22,14 +22,14 @@
       "coordinates": [
         [
           [-43.0551, -20.10355],
-          [-43.0537, -20.1027],
-          [-43.0521, -20.10305],
-          [-43.05085, -20.10348],
-          [-43.0502, -20.10462],
-          [-43.05055, -20.1057],
-          [-43.0522, -20.10635],
-          [-43.05375, -20.10605],
-          [-43.05535, -20.10495],
+          [-43.0538, -20.10262],
+          [-43.05225, -20.10292],
+          [-43.05055, -20.10342],
+          [-43.04985, -20.10472],
+          [-43.05035, -20.10588],
+          [-43.05212, -20.10642],
+          [-43.05392, -20.10612],
+          [-43.05555, -20.1049],
           [-43.0551, -20.10355]
         ]
       ]
@@ -44,11 +44,11 @@
       "type": "Polygon",
       "coordinates": [
         [
-          [-43.05535, -20.10345],
-          [-43.05415, -20.10295],
-          [-43.05455, -20.10428],
-          [-43.05545, -20.10482],
-          [-43.05535, -20.10345]
+          [-43.0557, -20.10335],
+          [-43.05405, -20.10286],
+          [-43.05442, -20.10443],
+          [-43.05558, -20.10492],
+          [-43.0557, -20.10335]
         ]
       ]
     }
@@ -62,11 +62,11 @@
       "type": "Polygon",
       "coordinates": [
         [
-          [-43.05098, -20.10468],
-          [-43.05022, -20.10482],
-          [-43.05062, -20.10532],
-          [-43.05128, -20.10515],
-          [-43.05098, -20.10468]
+          [-43.05065, -20.10478],
+          [-43.04995, -20.10496],
+          [-43.05035, -20.10548],
+          [-43.05118, -20.10524],
+          [-43.05065, -20.10478]
         ]
       ]
     }
@@ -80,7 +80,7 @@
       "explanation": "Há uma área do perímetro que parece avançar sobre uma região vizinha. Antes de tentar retificar, revise o desenho do imóvel e confirme os limites com a documentação técnica.",
       "action": "Revisar e ajustar o perímetro do imóvel.",
       "color": "red",
-      "position": [-20.10362, -43.0546]
+      "position": [-20.10372, -43.05472]
     },
     {
       "id": 2,
@@ -90,7 +90,7 @@
       "explanation": "A área informada no cadastro não bate com a estimativa calculada pelo polígono. Essa diferença pode indicar erro no perímetro ou dado cadastral desatualizado.",
       "action": "Conferir área declarada e cálculo do perímetro.",
       "color": "orange",
-      "position": [-20.10418, -43.05082]
+      "position": [-20.10425, -43.05035]
     },
     {
       "id": 3,
@@ -100,7 +100,7 @@
       "explanation": "O demonstrativo técnico aponta inconsistência nas informações de Reserva Legal. Valide se a área existe, se está corretamente declarada e se precisa de ajuste.",
       "action": "Revisar APP e Reserva Legal.",
       "color": "orange",
-      "position": [-20.10512, -43.05075]
+      "position": [-20.10516, -43.05056]
     },
     {
       "id": 4,
@@ -110,7 +110,7 @@
       "explanation": "Mesmo com os ajustes identificados, o fluxo oficial pode estar bloqueado. A recomendação é preparar as informações e acompanhar a liberação.",
       "action": "Acompanhar a Central de Mensagens e aguardar liberação.",
       "color": "red",
-      "position": [-20.10578, -43.05235]
+      "position": [-20.10572, -43.05245]
     },
     {
       "id": 5,
@@ -120,7 +120,7 @@
       "explanation": "As mensagens ajudam a entender o histórico, mas não deixam claro o próximo passo. O checklist organiza essas ações em ordem prática.",
       "action": "Separar documentos e revisar mensagens pendentes.",
       "color": "green",
-      "position": [-20.10555, -43.05425]
+      "position": [-20.10545, -43.05422]
     }
   ],
   "checklist": [

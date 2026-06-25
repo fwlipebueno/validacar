@@ -49,7 +49,7 @@ export function MobileSummaryPage({ property, onNavigate }: MobilePageProps) {
 
 export function MobileMapPage({ property, onNavigate }: MobilePageProps) {
   const sheetRef = useRef<HTMLDivElement>(null);
-  const [selectedAlertId, setSelectedAlertId] = useState(1);
+  const [selectedAlertId, setSelectedAlertId] = useState<number | undefined>();
 
   useEffect(() => {
     sheetRef.current?.scrollTo({ top: 0 });

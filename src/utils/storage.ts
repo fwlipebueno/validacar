@@ -21,5 +21,9 @@ export function loadChecklist(defaultItems: ChecklistItem[]) {
 }
 
 export function saveChecklist(items: ChecklistItem[]) {
-  window.localStorage.setItem(checklistStorageKey, JSON.stringify(items));
+  try {
+    window.localStorage.setItem(checklistStorageKey, JSON.stringify(items));
+  } catch {
+    return;
+  }
 }

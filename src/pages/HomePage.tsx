@@ -1,4 +1,16 @@
-import { ArrowRight, BarChart3, Bell, Check, FileText, Map, ShieldCheck, Target, TriangleAlert } from 'lucide-react';
+import {
+  ArrowRight,
+  BarChart3,
+  Bell,
+  Check,
+  ChevronRight,
+  FileText,
+  Map,
+  ShieldCheck,
+  Target,
+  TriangleAlert,
+} from 'lucide-react';
+import homeMapPreview from '../assets/home-map-preview.jpg';
 import { Logo } from '../components/common/Logo';
 
 interface HomePageProps {
@@ -30,32 +42,29 @@ function HeroIllustration() {
 function DesktopPreview() {
   return (
     <div className="home-dashboard-preview" aria-label="Prévia do diagnóstico ValidaCAR">
-      <div className="preview-map">
-        <div className="preview-river" />
-        <div className="preview-overlap" />
-        <div className="preview-sensitive" />
-        <div className="preview-polygon" />
-        <span className="preview-alert alert-a">1</span>
-        <span className="preview-alert alert-b">2</span>
-        <span className="preview-alert alert-c">3</span>
-        <span className="preview-area">7,08 ha</span>
+      <div className="preview-map-frame">
+        <img
+          src={homeMapPreview}
+          alt="Mapa rural com perímetro do imóvel, sobreposição, área sensível e alertas numerados."
+        />
       </div>
       <div className="preview-panel">
-        <span className="preview-kicker">Diagnóstico</span>
+        <span>Diagnóstico</span>
         <strong>O que merece atenção?</strong>
         <article>
-          <TriangleAlert size={18} />
-          <span>Sobreposição no perímetro</span>
-          <b>Alta</b>
+          <TriangleAlert size={24} />
+          <b>Sobreposição no perímetro</b>
+          <em>Alta</em>
         </article>
         <article>
-          <FileText size={18} />
-          <span>Retificação indisponível</span>
-          <b>Alta</b>
+          <FileText size={24} />
+          <b>Retificação indisponível</b>
+          <em>Alta</em>
         </article>
         <button type="button">
-          <Target size={18} />
-          Próximo passo definido
+          <Target size={28} />
+          <b>Próximo passo definido</b>
+          <ChevronRight size={24} />
         </button>
       </div>
     </div>
@@ -123,7 +132,7 @@ export function HomePage({ onStart }: HomePageProps) {
             </p>
             <HeroIllustration />
             <p className="home-copy">
-              Analisamos seu imóvel no CAR, identificamos alertas e orientamos os próximos passos para retificar com
+              Analisamos o imóvel, identificamos alertas e organizamos os próximos passos para apoiar a retificação com
               segurança.
             </p>
             <button className="primary-button" type="button" onClick={onStart}>
@@ -131,7 +140,7 @@ export function HomePage({ onStart }: HomePageProps) {
             </button>
             <div className="privacy-line">
               <ShieldCheck size={22} />
-              <span>Seus dados estão protegidos e não são compartilhados.</span>
+              <span>Demo com dados de exemplo, sem envio para sistemas externos.</span>
             </div>
           </section>
         </div>

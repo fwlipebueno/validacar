@@ -19,11 +19,12 @@ export function MapLayers({ property, selectedAlertId, hoveredAlertId, layers }:
   const riverActive = isActive([5], selectedAlertId, hoveredAlertId);
 
   const river: [number, number][] = [
-    [-20.1022, -43.05595],
-    [-20.10325, -43.05562],
-    [-20.10442, -43.05595],
-    [-20.10545, -43.05568],
-    [-20.10625, -43.05512],
+    [-20.10218, -43.05618],
+    [-20.10292, -43.05582],
+    [-20.10366, -43.05592],
+    [-20.10446, -43.0562],
+    [-20.10522, -43.05592],
+    [-20.10608, -43.05532],
   ];
 
   return (
@@ -40,7 +41,7 @@ export function MapLayers({ property, selectedAlertId, hoveredAlertId, layers }:
       )}
       <GeoJSON
         data={property.polygon}
-        style={{ color: '#b7f8bd', fillColor: '#128640', fillOpacity: 0.56, weight: 2 }}
+        style={{ color: '#c1fac6', fillColor: '#128640', fillOpacity: 0.62, weight: 2 }}
       />
       {layers.overlap && (
         <GeoJSON
@@ -50,8 +51,8 @@ export function MapLayers({ property, selectedAlertId, hoveredAlertId, layers }:
             color: '#ffffff',
             dashArray: '8 7',
             fillColor: '#d93642',
-            fillOpacity: overlapActive ? 0.82 : 0.68,
-            weight: overlapActive ? 4 : 3,
+            fillOpacity: overlapActive ? 0.84 : 0.7,
+            weight: overlapActive ? 5 : 3,
           }}
         />
       )}
@@ -63,12 +64,12 @@ export function MapLayers({ property, selectedAlertId, hoveredAlertId, layers }:
             color: '#ffa51f',
             dashArray: '7 6',
             fillColor: '#ffb12c',
-            fillOpacity: restrictedActive ? 0.52 : 0.36,
+            fillOpacity: restrictedActive ? 0.6 : 0.42,
             weight: restrictedActive ? 5 : 4,
           }}
         />
       )}
-      <GeoJSON data={property.polygon} style={{ color: '#b7f8bd', fillOpacity: 0, weight: 4 }} />
+      <GeoJSON data={property.polygon} style={{ color: '#b7f8bd', fillOpacity: 0, weight: 5 }} />
     </>
   );
 }

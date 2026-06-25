@@ -22,8 +22,8 @@ export function MapLabels({ property }: MapLabelsProps) {
 
   return (
     <>
-      <Marker icon={areaIcon} interactive={false} position={[-20.10472, -43.05275]} />
-      <Marker icon={roadIcon} interactive={false} position={[-20.10428, -43.05005]} />
+      <Marker icon={areaIcon} interactive={false} position={[-20.10473, -43.05265]} />
+      <Marker icon={roadIcon} interactive={false} position={[-20.10422, -43.04972]} />
     </>
   );
 }
