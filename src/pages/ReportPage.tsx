@@ -37,7 +37,7 @@ export function ReportPage({ property, checklist, onBack, onHome, onNavigate }: 
         <main className="mobile-screen report-screen">
           <div className="phone-frame app-phone">
             <div className="mobile-status">9:41</div>
-            <ScreenHeader title="Relatório final" onBack={onBack} right={<span />} />
+            <ScreenHeader title="Relatório final" onBack={onBack} onHome={onHome} right={<span />} />
             <div className="scroll-area">
               <ReportFinal property={property} checklist={checklist} />
               <button className="outline-button full" type="button" onClick={onBack}>

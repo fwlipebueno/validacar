@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { AlertTriangle, ArrowRight, ClipboardCheck, FileText, Layers, Map, Target } from 'lucide-react';
 import { AlertCard } from '../components/alerts/AlertCard';
 import { ChecklistPanel } from '../components/checklist/ChecklistPanel';
-import { Badge } from '../components/common/Badge';
 import { Notice } from '../components/common/Notice';
 import { ScreenHeader } from '../components/common/ScreenHeader';
 import { BottomNav } from '../components/layout/BottomNav';
@@ -12,28 +11,24 @@ import { PropertySummary } from '../components/property/PropertySummary';
 import { RecommendationCard } from './DashboardPage';
 import type { ChecklistItem, RuralProperty, View } from '../types';
 
+type SheetState = 'collapsed' | 'middle' | 'expanded';
+
 interface MobilePageProps {
   property: RuralProperty;
   checklist: ChecklistItem[];
+  onHome: () => void;
   onNavigate: (view: View) => void;
   onToggleChecklist: (id: string) => void;
 }
 
-export function MobileSummaryPage({ property, onNavigate }: MobilePageProps) {
+export function MobileSummaryPage({ property, onHome, onNavigate }: MobilePageProps) {
   return (
     <main className="mobile-screen">
       <div className="phone-frame app-phone">
         <div className="mobile-status">9:41</div>
-        <ScreenHeader title="Resumo do imóvel" />
+        <ScreenHeader title="Resumo do imóvel" onHome={onHome} />
         <div className="scroll-area">
           <PropertySummary property={property} />
-          <article className="card action-card">
-            <div className="field-row">
-              <span>Pode retificar agora?</span>
-              <Badge tone="red">Não</Badge>
-            </div>
-            <p>{property.rectificationMessage}</p>
-          </article>
           <MetricsGrid property={property} />
           <button className="outline-button map-button" type="button" onClick={() => onNavigate('map')}>
             <Map size={23} />
@@ -47,9 +42,10 @@ export function MobileSummaryPage({ property, onNavigate }: MobilePageProps) {
   );
 }
 
-export function MobileMapPage({ property, onNavigate }: MobilePageProps) {
+export function MobileMapPage({ property, onHome, onNavigate }: MobilePageProps) {
   const sheetRef = useRef<HTMLDivElement>(null);
   const [selectedAlertId, setSelectedAlertId] = useState<number | undefined>();
+  const [sheetState, setSheetState] = useState<SheetState>('middle');
 
   useEffect(() => {
     sheetRef.current?.scrollTo({ top: 0 });
@@ -57,6 +53,7 @@ export function MobileMapPage({ property, onNavigate }: MobilePageProps) {
 
   const selectAlert = (alertId: number) => {
     setSelectedAlertId(alertId);
+    setSheetState('middle');
     window.setTimeout(() => {
       sheetRef.current
         ?.querySelector(`[data-alert-id="${alertId}"]`)
@@ -68,7 +65,7 @@ export function MobileMapPage({ property, onNavigate }: MobilePageProps) {
     <main className="mobile-screen">
       <div className="phone-frame app-phone">
         <div className="mobile-status">9:41</div>
-        <ScreenHeader title="Mapa e alertas" onBack={() => onNavigate('summary')} right={<Layers size={21} />} />
+        <ScreenHeader title="Mapa e alertas" onBack={() => onNavigate('summary')} onHome={onHome} right={<Layers size={21} />} />
         <div className="mobile-map-wrapper">
           <MapAnalysis
             onSelectAlert={(alert) => selectAlert(alert.id)}
@@ -77,11 +74,25 @@ export function MobileMapPage({ property, onNavigate }: MobilePageProps) {
             variant="mobile"
           />
         </div>
-        <div className="mobile-sheet" ref={sheetRef}>
+        <div className={`mobile-sheet sheet-${sheetState}`} ref={sheetRef}>
+          <div className="sheet-handle-row">
+            <button
+              type="button"
+              aria-label={sheetState === 'collapsed' ? 'Ver alertas' : 'Recolher alertas'}
+              onClick={() => setSheetState(sheetState === 'collapsed' ? 'middle' : 'collapsed')}
+            >
+              <span />
+              <strong>{property.alerts.length} alertas encontrados</strong>
+              <em>{sheetState === 'collapsed' ? 'Ver alertas' : 'Recolher'}</em>
+            </button>
+          </div>
           <section className="mobile-alerts-panel">
             <div className="panel-title">
               <AlertTriangle size={21} />
               <h2>Alertas encontrados ({property.alerts.length})</h2>
+              <button type="button" onClick={() => setSheetState(sheetState === 'expanded' ? 'middle' : 'expanded')}>
+                {sheetState === 'expanded' ? 'Ver mapa' : 'Ver todos'}
+              </button>
             </div>
             <div className="mobile-alert-list">
               {property.alerts.map((alert) => (
@@ -115,12 +126,12 @@ export function MobileMapPage({ property, onNavigate }: MobilePageProps) {
   );
 }
 
-export function MobileChecklistPage({ property, checklist, onNavigate, onToggleChecklist }: MobilePageProps) {
+export function MobileChecklistPage({ property, checklist, onHome, onNavigate, onToggleChecklist }: MobilePageProps) {
   return (
     <main className="mobile-screen">
       <div className="phone-frame app-phone">
         <div className="mobile-status">9:41</div>
-        <ScreenHeader title="Checklist" onBack={() => onNavigate('map')} right={<ClipboardCheck size={21} />} />
+        <ScreenHeader title="Checklist" onBack={() => onNavigate('map')} onHome={onHome} right={<ClipboardCheck size={21} />} />
         <div className="scroll-area">
           <ChecklistPanel checklist={checklist} onToggle={onToggleChecklist} />
           <RecommendationCard onReport={() => onNavigate('report')} />

@@ -10,6 +10,7 @@ interface MapMarkersProps {
   layers: VisibleMapLayers;
   selectedAlertId?: number;
   onSelectAlert?: (alert: AlertItem) => void;
+  variant?: 'desktop' | 'mobile';
 }
 
 function severityTone(severity: AlertItem['severity']) {
@@ -18,12 +19,16 @@ function severityTone(severity: AlertItem['severity']) {
   return 'blue';
 }
 
-function createAlertIcon(alert: AlertItem, active: boolean) {
+function createAlertIcon(alert: AlertItem, active: boolean, variant: 'desktop' | 'mobile') {
+  const idleSize: [number, number] = variant === 'mobile' ? [26, 26] : [30, 30];
+  const activeSize: [number, number] = variant === 'mobile' ? [32, 32] : [38, 38];
+  const size = active ? activeSize : idleSize;
+
   return L.divIcon({
     className: `alert-marker marker-${alert.color}${active ? ' active-marker' : ''}`,
     html: `<span>${alert.id}</span>`,
-    iconSize: active ? [38, 38] : [30, 30],
-    iconAnchor: active ? [19, 19] : [15, 15],
+    iconSize: size,
+    iconAnchor: [size[0] / 2, size[1] / 2],
   });
 }
 
@@ -33,7 +38,14 @@ function isMarkerVisible(alert: AlertItem, layers: VisibleMapLayers) {
   return true;
 }
 
-export function MapMarkers({ alerts, hoveredAlertId, layers, selectedAlertId, onSelectAlert }: MapMarkersProps) {
+export function MapMarkers({
+  alerts,
+  hoveredAlertId,
+  layers,
+  selectedAlertId,
+  onSelectAlert,
+  variant = 'desktop',
+}: MapMarkersProps) {
   const map = useMap();
 
   return (
@@ -54,7 +66,7 @@ export function MapMarkers({ alerts, hoveredAlertId, layers, selectedAlertId, on
                 }
               },
             }}
-            icon={createAlertIcon(alert, active)}
+            icon={createAlertIcon(alert, active, variant)}
             key={alert.id}
             position={alert.position}
           >

@@ -56,6 +56,7 @@ export function MapAnalysis({
           layers={layers}
           onSelectAlert={onSelectAlert}
           selectedAlertId={selectedAlertId}
+          variant={variant}
         />
         <MapLabels property={property} />
         <MapControls

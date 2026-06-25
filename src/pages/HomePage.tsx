@@ -2,7 +2,6 @@ import {
   ArrowRight,
   BarChart3,
   Bell,
-  Check,
   ChevronRight,
   FileText,
   Map,
@@ -15,28 +14,6 @@ import { Logo } from '../components/common/Logo';
 
 interface HomePageProps {
   onStart: () => void;
-}
-
-function HeroIllustration() {
-  return (
-    <div className="hero-illustration" aria-hidden="true">
-      <div className="mini-panel">
-        <Check size={16} />
-        <Check size={16} />
-        <Check size={16} />
-      </div>
-      <div className="screen-stand">
-        <div className="screen-map">
-          <div className="screen-poly" />
-          <div className="screen-river" />
-          <span>CAR</span>
-        </div>
-      </div>
-      <div className="magnifier" />
-      <div className="tree-dot" />
-      <div className="ground-shape" />
-    </div>
-  );
 }
 
 function DesktopPreview() {
@@ -66,6 +43,18 @@ function DesktopPreview() {
           <b>Próximo passo definido</b>
           <ChevronRight size={24} />
         </button>
+      </div>
+    </div>
+  );
+}
+
+function MobilePreview() {
+  return (
+    <div className="mobile-diagnostic-preview" aria-label="Prévia do diagnóstico no mapa">
+      <img src={homeMapPreview} alt="Mapa rural com perímetro do imóvel e alertas de pré-retificação." />
+      <div className="mobile-preview-alerts">
+        <span>Diagnóstico</span>
+        <strong>2 pontos de atenção</strong>
       </div>
     </div>
   );
@@ -130,7 +119,7 @@ export function HomePage({ onStart }: HomePageProps) {
             <p className="thesis">
               O CAR já mostra os dados. O ValidaCAR mostra <strong>o que fazer com eles.</strong>
             </p>
-            <HeroIllustration />
+            <MobilePreview />
             <p className="home-copy">
               Analisamos o imóvel, identificamos alertas e organizamos os próximos passos para apoiar a retificação com
               segurança.

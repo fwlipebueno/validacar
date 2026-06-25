@@ -97,6 +97,10 @@ button {
   justify-content: center;
   gap: 12px;
   box-shadow: 0 12px 22px rgba(8, 124, 62, 0.25);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
 }
 
 .outline-button {
@@ -110,6 +114,38 @@ button {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.primary-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 28px rgba(8, 124, 62, 0.3);
+}
+
+.outline-button:hover {
+  transform: translateY(-1px);
+  border-color: #07984a;
+  background: var(--green-050);
+  box-shadow: 0 10px 18px rgba(8, 124, 62, 0.12);
+}
+
+.primary-button:active,
+.outline-button:active,
+.link-button:active,
+.icon-button:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.primary-button:focus-visible,
+.outline-button:focus-visible,
+.link-button:focus-visible,
+.icon-button:focus-visible {
+  outline: 3px solid rgba(11, 87, 208, 0.2);
+  outline-offset: 3px;
 }
 
 .outline-button.full {

@@ -54,17 +54,25 @@ export default function App() {
         {view === 'summary' && (
           <MobileSummaryPage
             checklist={checklist}
+            onHome={() => setView('home')}
             onNavigate={setView}
             onToggleChecklist={toggleChecklist}
             property={property}
           />
         )}
         {view === 'map' && (
-          <MobileMapPage checklist={checklist} onNavigate={setView} onToggleChecklist={toggleChecklist} property={property} />
+          <MobileMapPage
+            checklist={checklist}
+            onHome={() => setView('home')}
+            onNavigate={setView}
+            onToggleChecklist={toggleChecklist}
+            property={property}
+          />
         )}
         {view === 'checklist' && (
           <MobileChecklistPage
             checklist={checklist}
+            onHome={() => setView('home')}
             onNavigate={setView}
             onToggleChecklist={toggleChecklist}
             property={property}

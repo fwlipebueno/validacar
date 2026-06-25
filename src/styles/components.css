@@ -11,6 +11,17 @@
   background: transparent;
   padding: 0;
   cursor: pointer;
+  transition:
+    transform 160ms ease,
+    opacity 160ms ease;
+}
+
+.logo-button:hover {
+  transform: translateY(-1px);
+}
+
+.logo-button:active {
+  transform: translateY(1px) scale(0.99);
 }
 
 .logo-button:focus-visible {
@@ -778,8 +789,8 @@
 
 @media (max-width: 820px) {
   .map-mobile {
-    height: 350px;
-    min-height: 350px;
+    height: 100%;
+    min-height: 250px;
   }
 
   .mobile-map-wrapper .map-legend {
@@ -806,6 +817,28 @@
     display: grid;
     gap: 12px;
     overflow: visible;
+  }
+
+  .mobile-map-wrapper .alert-marker {
+    border-width: 2px;
+    font-size: 13px;
+  }
+
+  .mobile-map-wrapper .active-marker {
+    box-shadow:
+      0 0 0 4px rgba(255, 255, 255, 0.34),
+      0 6px 14px rgba(0, 0, 0, 0.32);
+  }
+
+  .mobile-map-wrapper .map-area-leaflet-label span {
+    border-radius: 8px;
+    padding: 7px 9px;
+    font-size: 14px;
+  }
+
+  .mobile-map-wrapper .road-leaflet-label span {
+    padding: 4px 6px;
+    font-size: 13px;
   }
 
   .recommendation-card {
