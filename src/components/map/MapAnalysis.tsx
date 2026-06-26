@@ -1,11 +1,13 @@
 import { useMemo, useState } from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer, ScaleControl, TileLayer } from 'react-leaflet';
 import type { AlertItem, RuralProperty } from '../../types';
 import { MapControls } from './MapControls';
+import { MapContextPanel } from './MapContextPanel';
 import { MapLabels } from './MapLabels';
 import { MapLayers } from './MapLayers';
 import { MapLegend } from './MapLegend';
 import { MapMarkers } from './MapMarkers';
+import { MapSurveyPanel } from './MapSurveyPanel';
 import { MapViewport } from './MapViewport';
 import type { VisibleMapLayers } from './mapTypes';
 
@@ -38,15 +40,45 @@ export function MapAnalysis({
 
   return (
     <div className={`map-shell map-${variant}`}>
-      <MapContainer center={[-20.10455, -43.0529]} zoom={15} zoomControl={false} attributionControl={false}>
+      <MapContainer
+        center={[-20.10455, -43.0529]}
+        maxBounds={[
+          [-85, -180],
+          [85, 180],
+        ]}
+        maxBoundsViscosity={1}
+        maxZoom={18}
+        minZoom={7}
+        preferCanvas
+        zoom={15}
+        zoomControl={false}
+        attributionControl={false}
+        worldCopyJump={false}
+      >
         {useFallbackTiles ? (
-          <TileLayer maxZoom={19} url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        ) : (
           <TileLayer
-            eventHandlers={{ tileerror: () => setUseFallbackTiles(true) }}
-            maxZoom={20}
-            url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+            maxNativeZoom={18}
+            maxZoom={18}
+            noWrap
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
+        ) : (
+          <>
+            <TileLayer
+              eventHandlers={{ tileerror: () => setUseFallbackTiles(true) }}
+              maxNativeZoom={17}
+              maxZoom={18}
+              noWrap
+              url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+            />
+            <TileLayer
+              maxNativeZoom={17}
+              maxZoom={18}
+              noWrap
+              opacity={0.82}
+              url="https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}"
+            />
+          </>
         )}
         <MapViewport fitRequest={fitRequest} property={property} selectedAlert={selectedAlert} variant={variant} />
         <MapLayers hoveredAlertId={hoveredAlertId} layers={layers} property={property} selectedAlertId={selectedAlertId} />
@@ -64,8 +96,10 @@ export function MapAnalysis({
           onFitProperty={() => setFitRequest((request) => request + 1)}
           onToggleLayer={toggleLayer}
         />
+        <ScaleControl imperial={false} position="bottomleft" />
       </MapContainer>
-      <div className="map-scale">100 m</div>
+      <MapContextPanel property={property} />
+      <MapSurveyPanel property={property} />
       <MapLegend />
     </div>
   );

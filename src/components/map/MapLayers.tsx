@@ -19,25 +19,39 @@ export function MapLayers({ property, selectedAlertId, hoveredAlertId, layers }:
   const riverActive = isActive([5], selectedAlertId, hoveredAlertId);
 
   const river: [number, number][] = [
-    [-20.10218, -43.05618],
-    [-20.10292, -43.05582],
-    [-20.10366, -43.05592],
-    [-20.10446, -43.0562],
-    [-20.10522, -43.05592],
-    [-20.10608, -43.05532],
+    [-20.10198, -43.05638],
+    [-20.10282, -43.05608],
+    [-20.10358, -43.05618],
+    [-20.10442, -43.05594],
+    [-20.10516, -43.05558],
+    [-20.1061, -43.05518],
   ];
 
   return (
     <>
       {layers.river && (
-        <Polyline
-          positions={river}
-          pathOptions={{
-            color: '#0ea5d7',
-            weight: riverActive ? 6 : 4,
-            opacity: 0.96,
-          }}
-        />
+        <>
+          <Polyline
+            positions={river}
+            pathOptions={{
+              color: '#064f7c',
+              weight: riverActive ? 13 : 10,
+              opacity: riverActive ? 0.78 : 0.58,
+              lineCap: 'round',
+              lineJoin: 'round',
+            }}
+          />
+          <Polyline
+            positions={river}
+            pathOptions={{
+              color: '#27c7f2',
+              weight: riverActive ? 6 : 4,
+              opacity: 0.98,
+              lineCap: 'round',
+              lineJoin: 'round',
+            }}
+          />
+        </>
       )}
       <GeoJSON
         data={property.polygon}

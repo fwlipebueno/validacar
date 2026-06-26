@@ -1,5 +1,5 @@
 import L from 'leaflet';
-import { Marker, Popup, useMap } from 'react-leaflet';
+import { Marker, Popup } from 'react-leaflet';
 import { Badge } from '../common/Badge';
 import type { AlertItem } from '../../types';
 import type { VisibleMapLayers } from './mapTypes';
@@ -46,8 +46,6 @@ export function MapMarkers({
   onSelectAlert,
   variant = 'desktop',
 }: MapMarkersProps) {
-  const map = useMap();
-
   return (
     <>
       {alerts.filter((alert) => isMarkerVisible(alert, layers)).map((alert) => {
@@ -58,17 +56,12 @@ export function MapMarkers({
             eventHandlers={{
               click: () => {
                 onSelectAlert?.(alert);
-                map.flyTo(alert.position, Math.max(map.getZoom(), 16), { duration: 0.45 });
-              },
-              mouseover: () => {
-                if (!selectedAlertId) {
-                  map.panTo(alert.position, { animate: true, duration: 0.25 });
-                }
               },
             }}
             icon={createAlertIcon(alert, active, variant)}
             key={alert.id}
             position={alert.position}
+            zIndexOffset={active ? 850 : 650}
           >
             <Popup closeButton={false} offset={[0, -10]}>
               <div className="marker-popup">

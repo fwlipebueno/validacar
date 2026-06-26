@@ -14,7 +14,7 @@ function getPropertyBounds(property: RuralProperty) {
   return L.geoJSON(property.polygon).getBounds();
 }
 
-export function MapViewport({ fitRequest, property, selectedAlert, variant }: MapViewportProps) {
+export function MapViewport({ fitRequest, property, variant }: MapViewportProps) {
   const map = useMap();
 
   useEffect(() => {
@@ -34,13 +34,6 @@ export function MapViewport({ fitRequest, property, selectedAlert, variant }: Ma
     const timers = [80, 220, 520].map((delay) => window.setTimeout(fitProperty, delay));
     return () => timers.forEach(window.clearTimeout);
   }, [fitRequest, map, property, variant]);
-
-  useEffect(() => {
-    if (!selectedAlert) return;
-
-    map.invalidateSize();
-    map.flyTo(selectedAlert.position, Math.max(map.getZoom(), 16), { duration: 0.45 });
-  }, [map, selectedAlert]);
 
   return null;
 }

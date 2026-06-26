@@ -1,4 +1,4 @@
-import { Layers, LocateFixed } from 'lucide-react';
+import { Layers, LocateFixed, UploadCloud } from 'lucide-react';
 import { useMap } from 'react-leaflet';
 import type { VisibleMapLayers } from './mapTypes';
 
@@ -30,6 +30,10 @@ export function MapControls({ layers, onFitProperty, onToggleLayer }: MapControl
           Camadas
         </button>
         <div>
+          <span className="loaded-file-chip">
+            <UploadCloud size={15} />
+            GeoJSON carregado
+          </span>
           <label>
             <input checked={layers.overlap} onChange={() => onToggleLayer('overlap')} type="checkbox" />
             Sobreposição
