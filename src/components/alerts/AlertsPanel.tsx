@@ -15,6 +15,10 @@ export function AlertsPanel({ alerts, detailed = false, selectedAlertId, onSelec
   const panelRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    panelRef.current?.querySelector<HTMLElement>('.alert-list')?.scrollTo({ top: 0, left: 0 });
+  }, []);
+
+  useEffect(() => {
     if (!selectedAlertId) return;
 
     const selectedCard = panelRef.current?.querySelector(`[data-alert-id="${selectedAlertId}"]`);

@@ -60,6 +60,7 @@ export function ReportFinal({ property, checklist }: ReportFinalProps) {
           <h2>Recomendação final</h2>
         </div>
         <p>{property.report.recommendation}</p>
+        <p className="recommendation-priority">Prioridade: revisar perímetro e sobreposição antes de tentar nova retificação.</p>
       </section>
 
       <section className="card next-steps">

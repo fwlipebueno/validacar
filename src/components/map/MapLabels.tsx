@@ -20,12 +20,10 @@ export function MapLabels({ property }: MapLabelsProps) {
   const areaIcon = createLabelIcon('map-area-leaflet-label', `${formatArea(property.calculatedAreaHa)} ha`, [86, 36]);
   const roadIcon = createLabelIcon('road-leaflet-label', 'MG-329', [78, 30]);
   const riverIcon = createLabelIcon('river-leaflet-label', 'Ribeirão São João', [132, 28]);
-  const cityIcon = createLabelIcon('city-leaflet-label', `${property.municipality} / ${property.state}`, [138, 28]);
 
   return (
     <>
       <Marker icon={riverIcon} interactive={false} position={[-20.1052, -43.0557]} zIndexOffset={500} />
-      <Marker icon={cityIcon} interactive={false} position={[-20.10655, -43.05445]} zIndexOffset={520} />
       <Marker icon={areaIcon} interactive={false} position={[-20.10475, -43.05272]} zIndexOffset={760} />
       <Marker icon={roadIcon} interactive={false} position={[-20.10398, -43.04968]} zIndexOffset={740} />
     </>
