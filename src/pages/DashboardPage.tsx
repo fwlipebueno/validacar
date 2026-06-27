@@ -33,7 +33,7 @@ export function RecommendationCard({ onReport }: { onReport?: () => void }) {
         <Target size={26} />
         <span>
           <strong>Próximo melhor passo</strong>
-          Revisar perímetro do imóvel e tratar a sobreposição identificada.
+          Revisar perímetro e tratar sobreposição.
         </span>
         <ChevronRight className="next-step-arrow" size={20} />
       </button>
