@@ -159,11 +159,30 @@
   background: linear-gradient(135deg, #e6f7ec, #f4fbf6);
   color: var(--green-900);
   font-weight: 900;
-  cursor: default;
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
 }
 
 .preview-panel button svg {
   color: var(--green-800);
+}
+
+.preview-panel button:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, #dcf3e5, #f0fbf4);
+  box-shadow: 0 12px 24px rgba(8, 124, 62, 0.14);
+}
+
+.preview-panel button:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.preview-panel button:focus-visible {
+  outline: 3px solid rgba(0, 121, 72, 0.22);
+  outline-offset: 3px;
 }
 
 .home-value-row {

@@ -16,7 +16,7 @@ interface HomePageProps {
   onStart: () => void;
 }
 
-function DesktopPreview() {
+function DesktopPreview({ onStart }: HomePageProps) {
   return (
     <div className="home-dashboard-preview" aria-label="Prévia do diagnóstico ValidaCAR">
       <div className="preview-map-frame">
@@ -38,7 +38,11 @@ function DesktopPreview() {
           <b>Retificação indisponível</b>
           <em>Alta</em>
         </article>
-        <button type="button">
+        <button
+          type="button"
+          onClick={onStart}
+          aria-label="Iniciar diagnóstico pelo próximo passo definido"
+        >
           <Target size={28} />
           <b>Próximo passo definido</b>
           <ChevronRight size={24} />
@@ -85,7 +89,7 @@ export function HomePage({ onStart }: HomePageProps) {
             </button>
           </div>
 
-          <DesktopPreview />
+          <DesktopPreview onStart={onStart} />
         </div>
 
         <div className="home-value-row">
