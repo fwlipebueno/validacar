@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FileText, Home, Map, ShieldCheck, Target } from 'lucide-react';
+import { ChevronRight, FileText, Home, Map, ShieldCheck, Target } from 'lucide-react';
 import { AlertsPanel } from '../components/alerts/AlertsPanel';
 import { ChecklistPanel } from '../components/checklist/ChecklistPanel';
 import { Badge } from '../components/common/Badge';
@@ -35,6 +35,7 @@ export function RecommendationCard({ onReport }: { onReport?: () => void }) {
           <strong>Próximo melhor passo</strong>
           Revisar perímetro do imóvel e tratar a sobreposição identificada.
         </span>
+        <ChevronRight className="next-step-arrow" size={20} />
       </button>
     </section>
   );
