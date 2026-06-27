@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { AlertTriangle, ArrowRight, ClipboardCheck, FileText, Layers, Map, Target } from 'lucide-react';
+import { AlertTriangle, ArrowRight, ClipboardCheck, FileText, Layers, Map, Plus, Target } from 'lucide-react';
 import { AlertCard } from '../components/alerts/AlertCard';
 import { ChecklistPanel } from '../components/checklist/ChecklistPanel';
 import { Notice } from '../components/common/Notice';
@@ -16,12 +16,13 @@ type SheetState = 'collapsed' | 'middle' | 'expanded';
 interface MobilePageProps {
   property: RuralProperty;
   checklist: ChecklistItem[];
+  onAddProperty?: () => void;
   onHome: () => void;
   onNavigate: (view: View) => void;
   onToggleChecklist: (id: string) => void;
 }
 
-export function MobileSummaryPage({ property, onHome, onNavigate }: MobilePageProps) {
+export function MobileSummaryPage({ property, onAddProperty, onHome, onNavigate }: MobilePageProps) {
   return (
     <main className="mobile-screen">
       <div className="phone-frame app-phone">
@@ -34,6 +35,12 @@ export function MobileSummaryPage({ property, onHome, onNavigate }: MobilePagePr
             <Map size={23} />
             Ver no mapa
           </button>
+          {onAddProperty && (
+            <button className="soft-mobile-action" type="button" onClick={onAddProperty}>
+              <Plus size={20} />
+              Adicionar imóvel
+            </button>
+          )}
           <Notice />
         </div>
         <BottomNav current="summary" onNavigate={onNavigate} />

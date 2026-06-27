@@ -1,15 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
-import { Bell, ChevronDown, CircleHelp } from 'lucide-react';
+import { AlertTriangle, ChevronDown, CircleHelp, Plus } from 'lucide-react';
 import { Logo } from '../common/Logo';
 
 interface DesktopHeaderProps {
   subtitle: string;
   onBack?: () => void;
   onHome?: () => void;
+  onAddProperty?: () => void;
+  onViewAlerts?: () => void;
 }
 
-export function DesktopHeader({ subtitle, onBack, onHome }: DesktopHeaderProps) {
-  const [openMenu, setOpenMenu] = useState<'help' | 'notifications' | 'team' | null>(null);
+export function DesktopHeader({ subtitle, onBack, onHome, onAddProperty, onViewAlerts }: DesktopHeaderProps) {
+  const [openMenu, setOpenMenu] = useState<'help' | 'alerts' | 'team' | null>(null);
   const actionsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -34,8 +36,13 @@ export function DesktopHeader({ subtitle, onBack, onHome }: DesktopHeaderProps) 
     };
   }, []);
 
-  const toggleMenu = (menu: 'help' | 'notifications' | 'team') => {
+  const toggleMenu = (menu: 'help' | 'alerts' | 'team') => {
     setOpenMenu((current) => (current === menu ? null : menu));
+  };
+
+  const handleViewAlerts = () => {
+    setOpenMenu(null);
+    onViewAlerts?.();
   };
 
   return (
@@ -50,6 +57,12 @@ export function DesktopHeader({ subtitle, onBack, onHome }: DesktopHeaderProps) 
           </button>
         ) : (
           <>
+            {onAddProperty && (
+              <button className="soft-add-property-button" type="button" onClick={onAddProperty}>
+                <Plus size={18} />
+                Adicionar imóvel
+              </button>
+            )}
             <div className="topbar-popover-wrap">
               <button
                 type="button"
@@ -69,19 +82,52 @@ export function DesktopHeader({ subtitle, onBack, onHome }: DesktopHeaderProps) 
             <div className="topbar-popover-wrap">
               <button
                 type="button"
-                aria-expanded={openMenu === 'notifications'}
+                aria-expanded={openMenu === 'alerts'}
                 aria-haspopup="dialog"
-                onClick={() => toggleMenu('notifications')}
+                onClick={() => toggleMenu('alerts')}
               >
-                <Bell size={18} />
-                Notificações <b>3</b>
+                <AlertTriangle size={18} />
+                Alertas <b>5</b>
               </button>
-              {openMenu === 'notifications' && (
-                <div className="topbar-popover notifications-popover" role="dialog" aria-label="Notificações">
-                  <strong>3 pontos de atenção</strong>
-                  <span>Sobreposição no perímetro</span>
-                  <span>Retificação indisponível</span>
-                  <span>Reserva Legal/APP pendente</span>
+              {openMenu === 'alerts' && (
+                <div className="topbar-popover alerts-popover" role="dialog" aria-label="Alertas dos imóveis">
+                  <strong>Alertas dos imóveis</strong>
+                  <p>Resumo dos imóveis acompanhados nesta demonstração.</p>
+
+                  <span className="popover-section-label">Imóvel atual</span>
+                  <button className="property-alert-item property-alert-current" type="button" onClick={handleViewAlerts}>
+                    <span className="property-alert-copy">
+                      <b>Lote 56 e 57 da Quadra nº 13</b>
+                      <small>5 alertas encontrados</small>
+                    </span>
+                    <em className="alert-badge-soft">Em análise</em>
+                    <small className="property-alert-action">Ver no mapa</small>
+                  </button>
+
+                  <span className="popover-section-label">Outros imóveis</span>
+                  <div className="property-alert-item property-alert-static">
+                    <span className="property-alert-copy">
+                      <b>Sítio Boa Esperança</b>
+                      <small>3 pontos de atenção</small>
+                    </span>
+                    <em className="alert-badge-red">Alta</em>
+                  </div>
+                  <div className="property-alert-item property-alert-static">
+                    <span className="property-alert-copy">
+                      <b>Fazenda Santa Clara</b>
+                      <small>Relatório orientativo pronto</small>
+                    </span>
+                    <em className="alert-badge-green">Ok</em>
+                  </div>
+                  <div className="property-alert-item property-alert-static">
+                    <span className="property-alert-copy">
+                      <b>Chácara São João</b>
+                      <small>1 alerta pendente</small>
+                    </span>
+                    <em className="alert-badge-orange">Média</em>
+                  </div>
+
+                  <p className="popover-footer-note">Dados de exemplo para demonstração do MVP.</p>
                 </div>
               )}
             </div>
@@ -107,6 +153,8 @@ export function DesktopHeader({ subtitle, onBack, onHome }: DesktopHeaderProps) 
               <strong>Equipe ValidaCAR</strong>
               <span>Técnico responsável</span>
               <span>Protótipo demonstrativo</span>
+              <span>Dados simulados</span>
+              <span>Sem envio ao SICAR</span>
             </div>
           )}
         </div>

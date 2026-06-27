@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { ChevronRight, FileText, Home, Map, ShieldCheck, Target } from 'lucide-react';
 import { AlertsPanel } from '../components/alerts/AlertsPanel';
 import { ChecklistPanel } from '../components/checklist/ChecklistPanel';
@@ -11,6 +11,7 @@ import type { ChecklistItem, RuralProperty } from '../types';
 interface DashboardPageProps {
   property: RuralProperty;
   checklist: ChecklistItem[];
+  onAddProperty: () => void;
   onHome: () => void;
   onToggleChecklist: (id: string) => void;
   onReport: () => void;
@@ -41,13 +42,25 @@ export function RecommendationCard({ onReport }: { onReport?: () => void }) {
   );
 }
 
-export function DashboardPage({ property, checklist, onHome, onToggleChecklist, onReport }: DashboardPageProps) {
+export function DashboardPage({ property, checklist, onAddProperty, onHome, onToggleChecklist, onReport }: DashboardPageProps) {
   const [selectedAlertId, setSelectedAlertId] = useState<number | undefined>();
   const [hoveredAlertId, setHoveredAlertId] = useState<number | undefined>();
+  const diagnosticRef = useRef<HTMLElement>(null);
+
+  const viewAlertsOnMap = () => {
+    setSelectedAlertId(property.alerts[0]?.id);
+    diagnosticRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    diagnosticRef.current?.focus({ preventScroll: true });
+  };
 
   return (
     <main className="desktop-app dashboard-app">
-      <DesktopHeader subtitle="Assistente de pré-retificação do CAR" onHome={onHome} />
+      <DesktopHeader
+        subtitle="Assistente de pré-retificação do CAR"
+        onAddProperty={onAddProperty}
+        onHome={onHome}
+        onViewAlerts={viewAlertsOnMap}
+      />
 
       <section className="desktop-hero compact-hero">
         <div className="hero-icon">
@@ -65,7 +78,7 @@ export function DashboardPage({ property, checklist, onHome, onToggleChecklist, 
         </button>
       </section>
 
-      <section className="dashboard-grid">
+      <section className="dashboard-grid" ref={diagnosticRef} tabIndex={-1}>
         <aside className="card desktop-summary">
           <div className="panel-title">
             <Home size={20} />

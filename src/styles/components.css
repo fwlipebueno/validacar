@@ -862,6 +862,150 @@
   margin-top: 12px;
 }
 
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  background: rgba(11, 22, 40, 0.28);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  backdrop-filter: blur(3px);
+}
+
+.property-entry-modal {
+  width: min(100%, 460px);
+  border: 1px solid var(--gray-200);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 24px 70px rgba(12, 23, 38, 0.22);
+  padding: 24px;
+  position: relative;
+  display: grid;
+  gap: 18px;
+}
+
+.property-entry-modal h2 {
+  margin: 0 36px 8px 0;
+  color: var(--ink-900);
+  font-size: 24px;
+}
+
+.property-entry-modal p {
+  margin: 0;
+  color: #4e5d72;
+  line-height: 1.45;
+}
+
+.property-entry-modal form {
+  display: grid;
+  gap: 10px;
+}
+
+.property-entry-modal label {
+  color: #42506a;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.property-entry-modal input {
+  min-height: 48px;
+  border: 1px solid var(--gray-250);
+  border-radius: 13px;
+  padding: 0 14px;
+  color: var(--ink-900);
+  outline: 0;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.property-entry-modal input:focus {
+  border-color: rgba(8, 124, 62, 0.44);
+  box-shadow: 0 0 0 4px rgba(8, 124, 62, 0.1);
+}
+
+.modal-close-button {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--gray-100);
+  color: #31405a;
+  display: grid;
+  place-items: center;
+}
+
+.modal-close-button:hover {
+  background: var(--green-050);
+  color: var(--green-900);
+}
+
+.modal-close-button:focus-visible {
+  outline: 3px solid rgba(0, 121, 72, 0.22);
+  outline-offset: 3px;
+}
+
+.modal-note {
+  border-radius: 13px;
+  background: var(--blue-100);
+  color: var(--blue-700) !important;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 12px;
+}
+
+.modal-error,
+.modal-success {
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 9px 10px;
+}
+
+.modal-error {
+  background: var(--red-100);
+  color: var(--red-700);
+}
+
+.modal-success {
+  background: var(--green-100);
+  color: var(--green-900);
+}
+
+.modal-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.soft-mobile-action {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid rgba(8, 124, 62, 0.16);
+  border-radius: 14px;
+  background: var(--green-050);
+  color: var(--green-900);
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.soft-mobile-action:hover {
+  border-color: rgba(8, 124, 62, 0.28);
+}
+
+.soft-mobile-action:focus-visible {
+  outline: 3px solid rgba(0, 121, 72, 0.22);
+  outline-offset: 3px;
+}
+
 .recommendation-card {
   margin: 0 16px 14px;
   background: #fff;
