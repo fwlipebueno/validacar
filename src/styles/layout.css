@@ -32,6 +32,39 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  border-radius: 12px;
+  min-height: 38px;
+  padding: 0 8px;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.topbar-actions button:hover {
+  background: #edf8f1;
+  color: var(--green-900);
+}
+
+.topbar-actions button:active {
+  transform: translateY(1px);
+}
+
+.topbar-actions button:focus-visible {
+  outline: 3px solid rgba(0, 121, 72, 0.22);
+  outline-offset: 3px;
+}
+
+.ghost-back-button {
+  font-weight: 700;
+  padding: 0 13px !important;
+}
+
+.ghost-back-button:hover {
+  background: #edf8f1 !important;
+  color: var(--green-900) !important;
 }
 
 .topbar-actions b {
@@ -45,12 +78,92 @@
   font-size: 12px;
 }
 
+.topbar-popover-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.topbar-popover {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  z-index: 900;
+  min-width: 240px;
+  border: 1px solid var(--gray-200);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 18px 42px rgba(12, 23, 38, 0.16);
+  color: #31405a;
+  padding: 12px;
+}
+
+.topbar-popover::before {
+  content: "";
+  position: absolute;
+  right: 20px;
+  top: -6px;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-left: 1px solid var(--gray-200);
+  border-top: 1px solid var(--gray-200);
+  transform: rotate(45deg);
+}
+
+.topbar-popover p {
+  margin: 0;
+  color: #4e5d72;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.topbar-popover strong {
+  display: block;
+  color: var(--ink-900);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.topbar-popover span {
+  display: block;
+  color: #4e5d72;
+  font-size: 13px;
+  line-height: 1.4;
+  padding: 7px 0;
+  border-top: 1px solid #edf1f4;
+}
+
+.topbar-popover span:first-of-type {
+  border-top: 0;
+}
+
+.help-popover {
+  width: 286px;
+}
+
+.notifications-popover,
+.team-popover {
+  display: grid;
+  gap: 0;
+}
+
 .user-chip {
-  display: flex;
+  display: flex !important;
   align-items: center;
   gap: 12px;
   border-left: 1px solid var(--gray-200);
-  padding-left: 18px;
+  border-radius: 0;
+  padding: 0 0 0 18px !important;
+  min-height: 44px !important;
+}
+
+.user-chip:hover {
+  background: transparent !important;
+}
+
+.user-chip:hover strong {
+  color: var(--green-900);
 }
 
 .user-chip > span {
