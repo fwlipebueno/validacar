@@ -8,80 +8,94 @@
 </p>
 
 <p align="center">
-  <strong>CAR pre-rectification assistant for clearer rural environmental registration.</strong>
+  <strong>ValidaCAR — CAR pre-rectification assistant.</strong>
 </p>
 
 <p align="center">
-  ValidaCAR turns technical CAR data into clear alerts, map-based analysis, and an actionable checklist.
+  CAR already shows the data. ValidaCAR shows what to do with it.
 </p>
 
 ---
 
 ## English
-ValidaCAR is a CAR pre-rectification assistant that turns technical registration data into clear alerts, map-based analysis, and an actionable checklist.
+ValidaCAR is a demonstrative MVP for the haCARthon. It helps producers and technical professionals understand the situation of a rural property before attempting a CAR rectification.
 
-CAR already shows the data. ValidaCAR shows what to do with it.
+The product turns technical CAR information into a visual diagnosis: map analysis, prioritized alerts, an action checklist, and an orientation report.
 
 ## Problem
-Rural producers and technical professionals often need to review CAR registration data before attempting a correction or resubmission. The process can involve fragmented technical information, spatial inconsistencies, legal restrictions, and unclear next steps.
+CAR systems already expose technical data, messages, declared areas, APP/RL information, overlaps, and registration status. The hard part for many users is understanding where the problem is, what deserves priority, and what should be reviewed before trying a correction.
 
-Without a simple pre-analysis, users may spend time preparing incomplete corrections, miss relevant inconsistencies, or submit changes without understanding the risks involved.
+## Solution
+ValidaCAR organizes technical property data into:
 
-## Proposed solution
-ValidaCAR helps users interpret rural property registration data before rectification. The product should organize technical inputs, highlight possible inconsistencies, provide visual map-based analysis, and generate a practical checklist for the next action.
+- Visual map analysis.
+- Prioritized alerts.
+- Action checklist.
+- Orientation report.
 
-It is not just a map validator. It is a pre-rectification assistant that turns technical information into clear actions: what deserves attention, why it matters, and what the user should review before correcting or resubmitting the CAR.
+It does not replace official analysis or qualified professionals. It is a pre-rectification assistant that helps the user prepare better before acting.
 
-The assistant is designed to support producers, technicians, agronomists, and surveyors with clear guidance while keeping the final decision and legal responsibility with the user and qualified professionals.
+## Demo Flow
+The MVP demonstrates:
 
-## Demo flow
-- Property loaded
-- Map view
-- Alerts
-- Simple explanation
-- Checklist / report
+- Home screen with the project positioning.
+- Rural property summary.
+- Map with property perimeter, possible overlap, APP/RL area, and watercourse.
+- Alerts connected to the map.
+- Action checklist.
+- Final report.
+- Desktop and mobile experiences.
 
-## MVP scope
-- Import or register basic rural property information.
-- Present a simplified property overview.
-- Identify potential inconsistencies in CAR-related data.
-- Show alerts and observations in clear language.
-- Provide map-based visual support for analysis.
-- Generate an actionable pre-rectification checklist.
-- Keep the experience focused on planning and decision support.
+## Important
+This project is a demonstrative prototype. It uses simulated data, does not connect to SICAR or Gov.br, does not perform official environmental analysis, and does not send data to external government systems.
 
-## Out of scope
-- Automatic CAR rectification or official submission.
-- Legal, environmental, or cadastral certification.
-- Replacement of technical, agronomic, surveying, or legal professionals.
-- Integration with every official government system in the first version.
-- Advanced geoprocessing automation beyond MVP validation needs.
-
-## Suggested stack
-The MVP stack is intentionally lean and not implemented yet:
-
-- React + TypeScript
+## Stack
+- React
+- TypeScript
+- Vite
 - Leaflet / React Leaflet
 - Turf.js
 - Mocked JSON data
-- Optional Node.js backend later
+- Organized CSS
 
-## Repository structure
-```txt
-validacar/
-├── README.md
-├── LICENSE
-├── .gitignore
-└── docs/
-    ├── mvp-validacar.md
-    ├── project-scope.md
-    └── research-notes.md
+## Running Locally
+```bash
+npm install
+npm run dev
 ```
 
-## Project status
-Planning / MVP definition.
+## Build
+```bash
+npm run build
+```
 
-## Main document
+## Project Structure
+```txt
+validacar/
+├── docs/              Product and planning documentation
+├── public/            Static public assets
+├── src/
+│   ├── components/    Reusable UI, map, report, alerts, checklist and layout components
+│   ├── data/          Simulated property, alert, checklist and report data
+│   ├── pages/         Home, summary, map, checklist, dashboard and report screens
+│   ├── styles/        Application styles organized by layout, pages and components
+│   └── utils/         Formatting and local state helpers
+├── README.md
+├── package.json
+└── vite.config.ts
+```
+
+## Status
+Functional MVP for haCARthon demonstration.
+
+## Next Steps
+- Validate the flow with real users.
+- Add secure persistence.
+- Integrate only with authorized data sources.
+- Evolve the diagnostic rules engine.
+- Improve export and sharing in a real workflow.
+
+## Main Document
 See [docs/mvp-validacar.md](docs/mvp-validacar.md).
 
 ---
@@ -94,68 +108,84 @@ See [docs/mvp-validacar.md](docs/mvp-validacar.md).
 </p>
 
 ## Português
-O ValidaCAR é um assistente de pré-retificação do CAR que transforma dados técnicos do cadastro em alertas claros, análise visual no mapa e checklist de ação.
+O ValidaCAR é um MVP demonstrativo para o haCARthon: um assistente de pré-retificação do CAR que ajuda produtores, técnicos, agrônomos e topógrafos a entenderem a situação do imóvel antes de tentar corrigir ou reenviar o cadastro.
 
-O CAR já mostra os dados. O ValidaCAR mostra o que fazer com eles.
+**O CAR já mostra os dados. O ValidaCAR mostra o que fazer com eles.**
 
 ## Problema
-Produtores rurais e profissionais técnicos muitas vezes precisam revisar os dados do CAR antes de tentar corrigir ou reenviar um cadastro. Esse processo pode envolver informações técnicas fragmentadas, inconsistências espaciais, restrições legais e próximos passos pouco claros.
+O usuário já encontra no CAR dados técnicos, mensagens, áreas declaradas, APP/RL, sobreposições e status do cadastro. Mesmo assim, muitas vezes não fica claro onde está o problema, qual ponto merece prioridade e o que precisa ser revisado antes da retificação.
 
-Sem uma pré-análise simples, usuários podem perder tempo preparando correções incompletas, deixar inconsistências relevantes passarem ou reenviar alterações sem compreender os riscos envolvidos.
+Essa falta de orientação pode levar a tentativas de correção incompletas, retrabalho e dificuldade para organizar documentos, perímetro, áreas e pendências.
 
-## Solução proposta
-O ValidaCAR ajuda usuários a interpretar dados do imóvel rural antes da retificação. O produto deve organizar insumos técnicos, destacar possíveis inconsistências, oferecer análise visual no mapa e gerar um checklist prático para a próxima ação.
+## Solução
+O ValidaCAR transforma dados técnicos do imóvel em uma leitura prática:
 
-Ele não é só um validador de mapa. É um assistente de pré-retificação que transforma informações técnicas em ações claras: o que merece atenção, por que isso importa e o que o usuário deve revisar antes de corrigir ou reenviar o CAR.
+- Mapa visual.
+- Alertas priorizados.
+- Checklist de ação.
+- Relatório orientativo.
 
-O assistente é pensado para apoiar produtores, técnicos, agrônomos e topógrafos com orientação clara, mantendo a decisão final e a responsabilidade legal com o usuário e com profissionais habilitados.
+O objetivo não é validar oficialmente o CAR, substituir o SICAR ou tomar decisão ambiental. O produto atua como uma camada de pré-análise para ajudar o usuário a entender o diagnóstico e preparar os próximos passos com mais clareza.
 
-## Fluxo da demo
-- Imóvel carregado
-- Mapa
-- Alertas
-- Explicação simples
-- Checklist / relatório
+## Fluxo da Demo
+O MVP demonstra:
 
-## Escopo do MVP
-- Importar ou registrar informações básicas do imóvel rural.
-- Apresentar uma visão simplificada do imóvel.
-- Identificar possíveis inconsistências relacionadas ao CAR.
-- Exibir alertas e observações em linguagem clara.
-- Oferecer apoio visual no mapa para análise.
-- Gerar um checklist acionável de pré-retificação.
-- Manter a experiência focada em planejamento e apoio à decisão.
+- Home com o posicionamento do produto.
+- Resumo do imóvel.
+- Mapa com perímetro, possível sobreposição, APP/RL e curso d'água.
+- Alertas conectados ao mapa.
+- Checklist de ação.
+- Relatório final.
+- Experiência desktop e mobile.
 
-## Fora do escopo
-- Retificação automática do CAR ou envio oficial.
-- Certificação legal, ambiental ou cadastral.
-- Substituição de profissionais técnicos, agronômicos, topográficos ou jurídicos.
-- Integração com todos os sistemas oficiais do governo na primeira versão.
-- Automação geoespacial avançada além das necessidades de validação do MVP.
+## Importante
+Este projeto é um protótipo demonstrativo. Ele usa dados simulados, não substitui o SICAR, não realiza análise oficial, não envia dados para sistemas externos e não representa decisão de órgão ambiental.
 
-## Stack sugerida
-A stack do MVP é propositalmente enxuta e ainda não foi implementada:
-
-- React + TypeScript
+## Stack
+- React
+- TypeScript
+- Vite
 - Leaflet / React Leaflet
 - Turf.js
 - Dados mockados em JSON
-- Backend opcional em Node.js depois
+- CSS organizado por contexto
 
-## Estrutura do repositório
-```txt
-validacar/
-├── README.md
-├── LICENSE
-├── .gitignore
-└── docs/
-    ├── mvp-validacar.md
-    ├── project-scope.md
-    └── research-notes.md
+## Como Rodar Localmente
+```bash
+npm install
+npm run dev
 ```
 
-## Status do projeto
-Planning / MVP definition.
+## Como Gerar Build
+```bash
+npm run build
+```
 
-## Documento principal
+## Estrutura do Projeto
+```txt
+validacar/
+├── docs/              Documentação de produto e planejamento
+├── public/            Assets públicos
+├── src/
+│   ├── components/    Componentes reutilizáveis de UI, mapa, relatório, alertas, checklist e layout
+│   ├── data/          Dados simulados do imóvel, alertas, checklist e relatório
+│   ├── pages/         Telas de home, resumo, mapa, checklist, dashboard e relatório
+│   ├── styles/        Estilos da aplicação organizados por layout, páginas e componentes
+│   └── utils/         Helpers de formatação e estado local
+├── README.md
+├── package.json
+└── vite.config.ts
+```
+
+## Status
+MVP funcional para demonstração no haCARthon.
+
+## Próximos Passos
+- Validar o fluxo com usuários reais.
+- Adicionar persistência segura.
+- Integrar apenas com bases autorizadas.
+- Evoluir o motor de diagnóstico.
+- Melhorar exportação e compartilhamento em um fluxo real.
+
+## Documento Principal
 Veja [docs/mvp-validacar.md](docs/mvp-validacar.md).
