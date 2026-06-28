@@ -1,4 +1,5 @@
 import { ArrowLeft } from 'lucide-react';
+import { LogoSymbol } from '../components/common/Logo';
 import { ScreenHeader } from '../components/common/ScreenHeader';
 import { BottomNav } from '../components/layout/BottomNav';
 import { DesktopHeader } from '../components/layout/DesktopHeader';
@@ -106,9 +107,12 @@ function PrintableReport({ property, checklistTotal, completedCount, reportDate 
     <article className="print-report" aria-hidden="true">
       <header className="print-report-header">
         <div>
-          <strong className="print-logo">
-            Valida<span>CAR</span>
-          </strong>
+          <div className="print-brand">
+            <LogoSymbol />
+            <strong className="print-logo">
+              Valida<span>CAR</span>
+            </strong>
+          </div>
           <p>Relatório orientativo de pré-retificação</p>
         </div>
         <div>

@@ -1,27 +1,33 @@
+import { useId } from 'react';
+
 interface LogoProps {
   onClick?: () => void;
 }
 
 export function LogoSymbol() {
+  const symbolId = useId().replace(/:/g, '');
+  const leafMainId = `leaf-main-${symbolId}`;
+  const leafDarkId = `leaf-dark-${symbolId}`;
+
   return (
     <svg className="logo-symbol" viewBox="0 0 72 64" aria-hidden="true">
       <defs>
-        <linearGradient id="leaf-main" x1="10" x2="58" y1="8" y2="58" gradientUnits="userSpaceOnUse">
+        <linearGradient id={leafMainId} x1="10" x2="58" y1="8" y2="58" gradientUnits="userSpaceOnUse">
           <stop stopColor="#04944a" />
           <stop offset="1" stopColor="#27b45d" />
         </linearGradient>
-        <linearGradient id="leaf-dark" x1="8" x2="42" y1="5" y2="58" gradientUnits="userSpaceOnUse">
+        <linearGradient id={leafDarkId} x1="8" x2="42" y1="5" y2="58" gradientUnits="userSpaceOnUse">
           <stop stopColor="#047d3f" />
           <stop offset="1" stopColor="#0b9a4b" />
         </linearGradient>
       </defs>
       <path
         d="M18.3 8.6c13.9 3.8 22.5 12.6 25.7 26.3-6.6 4.8-15.2 7.8-25.7 8.9C10.8 33.6 10.8 21.9 18.3 8.6Z"
-        fill="url(#leaf-dark)"
+        fill={`url(#${leafDarkId})`}
       />
       <path
         d="M44.6 28.8c8.7-6.5 17.5-8.2 26.3-5.2.1 12.2-5.6 22.1-17 29.6-8.8-2.6-14.9-7.9-18.2-15.9 2.3-3.3 5.3-6.1 8.9-8.5Z"
-        fill="url(#leaf-main)"
+        fill={`url(#${leafMainId})`}
         transform="translate(-9 4)"
       />
       <path d="M23 23c8.2 9.2 12.5 19.1 13 29.7" fill="none" stroke="#fff" strokeLinecap="round" strokeWidth="4.4" />

@@ -232,6 +232,15 @@
   justify-content: center;
 }
 
+.home-top-centered .logo-mark {
+  gap: 8px;
+}
+
+.home-top-centered .logo-symbol {
+  height: 31px;
+  width: 36px;
+}
+
 .home-content {
   padding: 14px 28px 22px;
 }
@@ -1004,6 +1013,18 @@
     letter-spacing: -0.04em;
     line-height: 1;
     margin-bottom: 4px;
+  }
+
+  .print-brand {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  .print-brand .logo-symbol {
+    height: 24px;
+    width: 28px;
   }
 
   .print-logo span {
