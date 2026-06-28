@@ -945,7 +945,7 @@
 
 @page {
   size: A4;
-  margin: 12mm;
+  margin: 8mm;
 }
 
 @media print {
@@ -975,17 +975,17 @@
     color: #111827;
     font-family:
       Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 12.5px;
-    line-height: 1.46;
+    font-size: 11.4px;
+    line-height: 1.36;
   }
 
   .print-report-header {
-    border-bottom: 3px solid #087c3e;
+    border-bottom: 2px solid #087c3e;
     display: flex;
     justify-content: space-between;
     gap: 24px;
-    padding-bottom: 14px;
-    margin-bottom: 14px;
+    padding-bottom: 9px;
+    margin-bottom: 9px;
   }
 
   .print-report-header p,
@@ -999,11 +999,11 @@
   .print-logo {
     color: #0b1628;
     display: block;
-    font-size: 30px;
+    font-size: 26px;
     font-weight: 900;
     letter-spacing: -0.04em;
     line-height: 1;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
   .print-logo span {
@@ -1017,35 +1017,35 @@
 
   .print-report-header strong:not(.print-logo) {
     display: block;
-    font-size: 12.5px;
-    margin: 2px 0 7px;
+    font-size: 11.4px;
+    margin: 1px 0 4px;
   }
 
   .print-block,
   .print-executive,
   .print-disclaimer {
-    break-inside: avoid;
     border: 1px solid #dfe6ee;
-    border-radius: 14px;
-    margin-bottom: 11px;
-    padding: 14px 16px;
+    border-radius: 10px;
+    margin-bottom: 7px;
+    padding: 9px 11px;
   }
 
   .print-executive {
     background: linear-gradient(135deg, #f3fbf5 0%, #ffffff 72%);
     border-color: #cfe8d7;
     display: grid;
-    gap: 12px;
+    gap: 8px;
+    break-inside: avoid;
   }
 
   .print-executive > div:first-child {
     display: grid;
-    gap: 4px;
+    gap: 2px;
   }
 
   .print-executive > div:first-child span {
     color: #087c3e;
-    font-size: 11px;
+    font-size: 9.5px;
     font-weight: 900;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -1053,41 +1053,41 @@
 
   .print-executive h1 {
     color: #0b1628;
-    font-size: 21px;
+    font-size: 17px;
     line-height: 1.12;
     margin: 0;
   }
 
   .print-executive p {
-    border-radius: 10px;
+    border-radius: 8px;
     background: #e5f6eb;
     color: #065f31;
     font-weight: 850;
     margin: 0;
-    padding: 9px 11px;
+    padding: 6px 8px;
   }
 
   .print-block h1,
   .print-block h2 {
     color: #0b1628;
-    margin: 0 0 11px;
+    margin: 0 0 7px;
   }
 
   .print-block h1 {
-    font-size: 20px;
+    font-size: 17px;
   }
 
   .print-block h2 {
     align-items: center;
     display: flex;
-    font-size: 15.5px;
-    gap: 8px;
+    font-size: 13px;
+    gap: 6px;
   }
 
   .print-block h2::before {
     content: "";
-    width: 7px;
-    height: 20px;
+    width: 5px;
+    height: 16px;
     border-radius: 999px;
     background: #087c3e;
     display: inline-block;
@@ -1099,13 +1099,13 @@
 
   .print-block p + p,
   .print-diagnostic-summary .print-advisory {
-    margin-top: 10px;
+    margin-top: 6px;
   }
 
   .print-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 11px 16px;
+    gap: 7px 12px;
   }
 
   .print-grid div,
@@ -1118,8 +1118,8 @@
   .print-summary-row span,
   .print-kpi-grid span {
     display: block;
-    font-size: 10.5px;
-    margin-bottom: 3px;
+    font-size: 9.2px;
+    margin-bottom: 2px;
   }
 
   .print-grid strong,
@@ -1127,26 +1127,26 @@
   .print-kpi-grid strong {
     color: #0b1628;
     display: block;
-    font-size: 12.5px;
+    font-size: 11.2px;
     overflow-wrap: anywhere;
   }
 
   .print-kpi-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 10px;
+    gap: 7px;
   }
 
   .print-kpi-grid div {
     background: #fff;
     border: 1px solid #dbe8e0;
-    border-radius: 12px;
-    padding: 11px 12px;
+    border-radius: 9px;
+    padding: 7px 8px;
   }
 
   .print-kpi-grid strong {
     color: #065f31;
-    font-size: 17px;
+    font-size: 13px;
     line-height: 1.1;
   }
 
@@ -1154,23 +1154,23 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     border-bottom: 1px solid #e8eef4;
-    gap: 12px;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
+    gap: 9px;
+    margin-bottom: 7px;
+    padding-bottom: 7px;
   }
 
   .print-advisory {
     background: #edf8f1;
-    border-radius: 8px;
+    border-radius: 7px;
     color: #065f31;
     font-weight: 800;
-    padding: 9px 10px;
+    padding: 6px 8px;
   }
 
   .print-steps {
     counter-reset: report-step;
     display: grid;
-    gap: 8px;
+    gap: 5px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -1179,12 +1179,12 @@
   .print-steps li {
     align-items: start;
     border: 1px solid #e4eaf0;
-    border-radius: 11px;
+    border-radius: 8px;
     counter-increment: report-step;
     display: grid;
-    gap: 2px 10px;
-    grid-template-columns: 30px minmax(0, 1fr);
-    padding: 9px 11px;
+    gap: 1px 8px;
+    grid-template-columns: 24px minmax(0, 1fr);
+    padding: 6px 8px;
   }
 
   .print-steps li::before {
@@ -1194,12 +1194,12 @@
     color: #fff;
     content: counter(report-step);
     display: inline-flex;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 900;
-    height: 24px;
+    height: 19px;
     justify-content: center;
     margin-top: 1px;
-    width: 24px;
+    width: 19px;
   }
 
   .print-steps strong {
@@ -1218,14 +1218,15 @@
     border-color: #cfe8d7;
     color: #2c3b52;
     display: flex;
-    gap: 18px;
+    gap: 12px;
     justify-content: space-between;
-    margin-top: 2px;
+    margin-top: 0;
+    break-inside: avoid;
   }
 
   .print-disclaimer strong {
     color: #065f31;
-    font-size: 12px;
+    font-size: 10.8px;
     white-space: nowrap;
   }
 
