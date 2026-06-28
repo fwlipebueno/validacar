@@ -945,10 +945,10 @@
   border-radius: 22px;
   background: #fff;
   box-shadow: 0 24px 70px rgba(12, 23, 38, 0.22);
-  padding: 24px;
+  padding: 22px 24px;
   position: relative;
   display: grid;
-  gap: 18px;
+  gap: 14px;
 }
 
 .property-entry-modal *,
@@ -958,7 +958,7 @@
 }
 
 .property-entry-modal h2 {
-  margin: 0 36px 8px 0;
+  margin: 0 36px 6px 0;
   color: var(--ink-900);
   font-size: 24px;
 }
@@ -971,7 +971,7 @@
 
 .property-entry-modal form {
   display: grid;
-  gap: 11px;
+  gap: 9px;
   min-width: 0;
 }
 
@@ -984,7 +984,7 @@
 .property-entry-modal input {
   width: 100%;
   min-width: 0;
-  min-height: 48px;
+  min-height: 44px;
   border: 1px solid var(--gray-250);
   border-radius: 13px;
   padding: 0 14px;
@@ -1002,7 +1002,7 @@
 
 .modal-field {
   display: grid;
-  gap: 6px;
+  gap: 5px;
   min-width: 0;
 }
 
@@ -1060,8 +1060,8 @@
   border-radius: 16px;
   background: linear-gradient(180deg, #fbfefd 0%, #f7fbf8 100%);
   display: grid;
-  gap: 10px;
-  padding: 13px;
+  gap: 8px;
+  padding: 12px;
 }
 
 .complementary-validations-header {

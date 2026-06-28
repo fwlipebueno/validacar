@@ -7,6 +7,7 @@ interface PropertyEntryModalProps {
 }
 
 export function PropertyEntryModal({ onClose, onSimulate }: PropertyEntryModalProps) {
+  const [propertyName, setPropertyName] = useState('');
   const [carCode, setCarCode] = useState('');
   const [ownerCpf, setOwnerCpf] = useState('');
   const [landReference, setLandReference] = useState('');
@@ -56,6 +57,17 @@ export function PropertyEntryModal({ onClose, onSimulate }: PropertyEntryModalPr
         </div>
 
         <form onSubmit={handleSubmit}>
+          <div className="modal-field">
+            <label htmlFor="property-name-input">Nome do imóvel</label>
+            <input
+              id="property-name-input"
+              value={propertyName}
+              onChange={(event) => setPropertyName(event.target.value)}
+              placeholder="Ex.: Sítio Boa Esperança"
+            />
+            <small>Usado apenas para identificar o imóvel no painel.</small>
+          </div>
+
           <div className="modal-field">
             <label htmlFor="car-code-input">Código CAR</label>
             <input
