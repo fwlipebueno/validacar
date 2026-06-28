@@ -69,19 +69,39 @@ export function ReportPage({ property, checklist, onBack, onHome, onNavigate }: 
         </main>
       </div>
 
-      <PrintableReport property={property} checklist={checklist} completedCount={completedCount} reportDate={reportDate} />
+      <PrintableReport
+        property={property}
+        checklistTotal={checklist.length}
+        completedCount={completedCount}
+        reportDate={reportDate}
+      />
     </>
   );
 }
 
 interface PrintableReportProps {
   property: RuralProperty;
-  checklist: ChecklistItem[];
+  checklistTotal: number;
   completedCount: number;
   reportDate: string;
 }
 
-function PrintableReport({ property, checklist, completedCount, reportDate }: PrintableReportProps) {
+function PrintableReport({ property, checklistTotal, completedCount, reportDate }: PrintableReportProps) {
+  const printSteps = [
+    {
+      title: 'Revisar e ajustar o perímetro',
+      description: 'Ajuste o contorno do imóvel conforme as orientações.',
+    },
+    {
+      title: 'Tratar sobreposição identificada',
+      description: 'Conferir área declarada e cálculo do perímetro.',
+    },
+    {
+      title: 'Validar informações de Reserva Legal',
+      description: 'Revisar APP e Reserva Legal.',
+    },
+  ];
+
   return (
     <article className="print-report" aria-hidden="true">
       <header className="print-report-header">
@@ -92,14 +112,48 @@ function PrintableReport({ property, checklist, completedCount, reportDate }: Pr
           <p>Relatório orientativo de pré-retificação</p>
         </div>
         <div>
+          <span>Imóvel</span>
+          <strong>{property.propertyName}</strong>
           <span>Data de geração</span>
           <strong>{reportDate}</strong>
         </div>
       </header>
 
+      <section className="print-executive">
+        <div>
+          <span>Resumo executivo</span>
+          <h1>Diagnóstico orientativo antes da retificação</h1>
+        </div>
+        <div className="print-kpi-grid">
+          <div>
+            <span>Prioridade geral</span>
+            <strong>{property.report.priority}</strong>
+          </div>
+          <div>
+            <span>Alertas encontrados</span>
+            <strong>{property.alerts.length}</strong>
+          </div>
+          <div>
+            <span>Checklist concluído</span>
+            <strong>
+              {completedCount}/{checklistTotal}
+            </strong>
+          </div>
+          <div>
+            <span>Pode retificar agora</span>
+            <strong>{property.canRectify ? 'Sim' : 'Não'}</strong>
+          </div>
+        </div>
+        <p>Prioridade: revisar perímetro e sobreposição antes de tentar nova retificação.</p>
+      </section>
+
       <section className="print-block print-property-identification">
-        <h1>{property.propertyName}</h1>
+        <h2>Dados do imóvel</h2>
         <div className="print-grid">
+          <div>
+            <span>Imóvel</span>
+            <strong>{property.propertyName}</strong>
+          </div>
           <div>
             <span>Município/UF</span>
             <strong>
@@ -113,10 +167,6 @@ function PrintableReport({ property, checklist, completedCount, reportDate }: Pr
           <div>
             <span>Situação no SICAR</span>
             <strong>{property.sicarStatus}</strong>
-          </div>
-          <div>
-            <span>Pode retificar agora?</span>
-            <strong>{property.canRectify ? 'Sim' : 'Não'}</strong>
           </div>
           <div>
             <span>Área declarada</span>
@@ -134,7 +184,7 @@ function PrintableReport({ property, checklist, completedCount, reportDate }: Pr
       </section>
 
       <section className="print-block print-diagnostic-summary">
-        <h2>Resumo do diagnóstico</h2>
+        <h2>Diagnóstico orientativo</h2>
         <div className="print-summary-row">
           <div>
             <span>Total de alertas</span>
@@ -147,23 +197,22 @@ function PrintableReport({ property, checklist, completedCount, reportDate }: Pr
           <div>
             <span>Checklist concluído</span>
             <strong>
-              {completedCount}/{checklist.length}
+              {completedCount}/{checklistTotal}
             </strong>
           </div>
         </div>
-      </section>
-
-      <section className="print-block">
-        <h2>Recomendação final</h2>
         <p>{property.report.recommendation}</p>
-        <p className="print-priority">Prioridade: revisar perímetro e sobreposição antes de tentar nova retificação.</p>
+        <p className="print-advisory">Este diagnóstico é orientativo e não substitui a análise oficial do SICAR.</p>
       </section>
 
       <section className="print-block">
         <h2>Próximos passos</h2>
         <ol className="print-steps">
-          {property.report.nextSteps.map((step) => (
-            <li key={step}>{step}</li>
+          {printSteps.map((step) => (
+            <li key={step.title}>
+              <strong>{step.title}</strong>
+              <span>{step.description}</span>
+            </li>
           ))}
         </ol>
       </section>
@@ -173,7 +222,10 @@ function PrintableReport({ property, checklist, completedCount, reportDate }: Pr
         <p>{property.report.shareSummary}</p>
       </section>
 
-      <footer className="print-disclaimer">Este diagnóstico é orientativo e não substitui a análise oficial do SICAR.</footer>
+      <footer className="print-disclaimer">
+        <strong>ValidaCAR — Assistente orientativo de pré-retificação do CAR</strong>
+        <span>Documento gerado para apoio técnico com dados demonstrativos. Não substitui análise oficial do órgão ambiental.</span>
+      </footer>
     </article>
   );
 }
