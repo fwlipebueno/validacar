@@ -77,7 +77,7 @@ export function PropertyEntryModal({ onClose, onSimulate }: PropertyEntryModalPr
                 onChange={(event) => setOwnerCpf(event.target.value)}
                 placeholder="Opcional"
               />
-              <small>Ajuda a conferir dados cadastrais quando houver autorização.</small>
+              <small>Confere dados cadastrais quando houver autorização.</small>
             </div>
 
             <div className="modal-field">
@@ -88,7 +88,7 @@ export function PropertyEntryModal({ onClose, onSimulate }: PropertyEntryModalPr
                 onChange={(event) => setLandReference(event.target.value)}
                 placeholder="Opcional"
               />
-              <small>Ajuda a comparar dados fundiários e perímetro certificado.</small>
+              <small>Compara dados fundiários e perímetro certificado.</small>
             </div>
           </div>
 
@@ -99,7 +99,7 @@ export function PropertyEntryModal({ onClose, onSimulate }: PropertyEntryModalPr
             <div className="complementary-validations-header">
               <div>
                 <h3 id="complementary-validations-title">Pré-checagem do imóvel</h3>
-                <p>Conferências que ajudam a reduzir erro antes da pré-análise.</p>
+                <p>Conferências para reduzir erros antes da pré-análise.</p>
               </div>
             </div>
 
@@ -140,7 +140,7 @@ export function PropertyEntryModal({ onClose, onSimulate }: PropertyEntryModalPr
           </section>
 
           <p className="modal-note">
-            Pré-análise orientativa. No protótipo, os dados são demonstrativos e não são enviados ao SICAR.
+            Pré-análise orientativa. No protótipo, os dados não são enviados ao SICAR.
           </p>
 
           <div className="modal-actions">
