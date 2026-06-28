@@ -6,9 +6,11 @@ import type { ChecklistItem, RuralProperty } from '../../types';
 interface ReportFinalProps {
   property: RuralProperty;
   checklist: ChecklistItem[];
+  onExportPdf: () => void;
+  reportDate: string;
 }
 
-export function ReportFinal({ property, checklist }: ReportFinalProps) {
+export function ReportFinal({ property, checklist, onExportPdf, reportDate }: ReportFinalProps) {
   const completedCount = checklist.filter((item) => item.status === 'done').length;
 
   return (
@@ -28,7 +30,7 @@ export function ReportFinal({ property, checklist }: ReportFinalProps) {
         <div>
           <CalendarDays size={18} />
           <span>Data de geração</span>
-          <strong>16/05/2024 às 09:41</strong>
+          <strong>{reportDate}</strong>
         </div>
         <div>
           <UserRound size={18} />
@@ -90,7 +92,7 @@ export function ReportFinal({ property, checklist }: ReportFinalProps) {
       </section>
 
       <div className="report-actions">
-        <button className="outline-button" type="button">
+        <button className="outline-button" type="button" onClick={onExportPdf}>
           <Download size={20} />
           Exportar PDF
         </button>
