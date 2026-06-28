@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { AlertTriangle, ArrowRight, ClipboardCheck, FileText, Layers, Map, Plus, Target } from 'lucide-react';
+import { AlertTriangle, ArrowRight, ClipboardCheck, FileText, Layers, Map, Plus, Target, X } from 'lucide-react';
 import { AlertCard } from '../components/alerts/AlertCard';
 import { ChecklistPanel } from '../components/checklist/ChecklistPanel';
 import { Notice } from '../components/common/Notice';
@@ -23,12 +23,49 @@ interface MobilePageProps {
 }
 
 export function MobileSummaryPage({ property, onAddProperty, onHome, onNavigate }: MobilePageProps) {
+  const [alertsOpen, setAlertsOpen] = useState(false);
+
+  useEffect(() => {
+    if (!alertsOpen) {
+      return;
+    }
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setAlertsOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', closeOnEscape);
+    return () => document.removeEventListener('keydown', closeOnEscape);
+  }, [alertsOpen]);
+
+  const viewAlertsOnMap = () => {
+    setAlertsOpen(false);
+    onNavigate('map');
+  };
+
   return (
     <main className="mobile-screen">
       <div className="phone-frame app-phone">
         <div className="mobile-status">9:41</div>
-        <ScreenHeader title="Resumo do imóvel" onHome={onHome} />
-        <div className="scroll-area">
+        <ScreenHeader
+          title="Resumo do imóvel"
+          onHome={onHome}
+          right={
+            <button
+              className="mobile-alert-trigger"
+              type="button"
+              aria-label="Abrir alertas dos imóveis"
+              aria-expanded={alertsOpen}
+              onClick={() => setAlertsOpen(true)}
+            >
+              <AlertTriangle size={21} />
+              <span>{property.alerts.length}</span>
+            </button>
+          }
+        />
+        <div className="scroll-area mobile-summary-scroll">
           <PropertySummary property={property} />
           <MetricsGrid property={property} />
           <button className="outline-button map-button" type="button" onClick={() => onNavigate('map')}>
@@ -43,6 +80,62 @@ export function MobileSummaryPage({ property, onAddProperty, onHome, onNavigate 
           )}
           <Notice />
         </div>
+        {alertsOpen && (
+          <div className="mobile-alerts-overlay" role="presentation" onMouseDown={() => setAlertsOpen(false)}>
+            <section
+              className="mobile-alerts-sheet"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Alertas dos imóveis"
+              onMouseDown={(event) => event.stopPropagation()}
+            >
+              <div className="mobile-alerts-sheet-header">
+                <div>
+                  <h2>Alertas dos imóveis</h2>
+                  <p>Resumo dos imóveis acompanhados nesta demonstração.</p>
+                </div>
+                <button type="button" aria-label="Fechar alertas" onClick={() => setAlertsOpen(false)}>
+                  <X size={19} />
+                </button>
+              </div>
+
+              <span className="mobile-alerts-section">Imóvel atual</span>
+              <button className="mobile-alert-property current" type="button" onClick={viewAlertsOnMap}>
+                <span>
+                  <strong>{property.propertyName}</strong>
+                  <small>{property.alerts.length} alertas encontrados</small>
+                  <em>Ver no mapa</em>
+                </span>
+                <b>Em análise</b>
+              </button>
+
+              <span className="mobile-alerts-section">Outros imóveis</span>
+              <div className="mobile-alert-property">
+                <span>
+                  <strong>Sítio Boa Esperança</strong>
+                  <small>3 pontos de atenção</small>
+                </span>
+                <b className="danger">Alta</b>
+              </div>
+              <div className="mobile-alert-property">
+                <span>
+                  <strong>Fazenda Santa Clara</strong>
+                  <small>Relatório orientativo pronto</small>
+                </span>
+                <b className="ok">Ok</b>
+              </div>
+              <div className="mobile-alert-property">
+                <span>
+                  <strong>Chácara São João</strong>
+                  <small>1 alerta pendente</small>
+                </span>
+                <b className="medium">Média</b>
+              </div>
+
+              <p className="mobile-alerts-footnote">Dados de exemplo para demonstração do MVP.</p>
+            </section>
+          </div>
+        )}
         <BottomNav current="summary" onNavigate={onNavigate} />
       </div>
     </main>

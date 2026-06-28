@@ -286,6 +286,69 @@
   font-size: 23px;
 }
 
+.mobile-summary-scroll .metric-grid {
+  min-height: auto;
+  overflow: visible;
+  box-shadow: 0 10px 24px rgba(12, 23, 38, 0.07);
+}
+
+.mobile-summary-scroll .summary-card {
+  padding: 12px 18px;
+}
+
+.mobile-summary-scroll .summary-card h2 {
+  margin: 10px 0 8px;
+  font-size: 20px;
+  line-height: 1.18;
+}
+
+.mobile-summary-scroll .section-label,
+.mobile-summary-scroll .inline-muted {
+  gap: 7px;
+}
+
+.mobile-summary-scroll .divider {
+  margin: 10px 0;
+}
+
+.mobile-summary-scroll .field-line {
+  gap: 6px;
+}
+
+.mobile-summary-scroll .field-line strong {
+  font-size: 15px;
+  line-height: 1.22;
+}
+
+.mobile-summary-scroll .summary-badges {
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.mobile-summary-scroll .badge {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.mobile-summary-scroll .rectification-copy {
+  margin: 10px 0 0;
+  line-height: 1.35;
+}
+
+.mobile-summary-scroll .metric-grid div {
+  min-width: 0;
+  padding: 12px 8px;
+}
+
+.mobile-summary-scroll .metric-grid span {
+  line-height: 1.25;
+}
+
+.mobile-summary-scroll .metric-grid strong {
+  font-size: 20px;
+  line-height: 1.15;
+}
+
 .summary-metrics {
   grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid var(--gray-200);

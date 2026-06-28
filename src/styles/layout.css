@@ -511,6 +511,13 @@
   padding-bottom: 104px;
 }
 
+.mobile-summary-scroll {
+  align-content: start;
+  gap: 10px;
+  padding: 14px 20px 96px;
+  overflow: hidden;
+}
+
 .bottom-nav {
   position: absolute;
   bottom: 0;

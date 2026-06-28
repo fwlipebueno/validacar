@@ -1,7 +1,6 @@
 import {
   ArrowRight,
   BarChart3,
-  Bell,
   ChevronRight,
   FileText,
   Map,
@@ -114,9 +113,8 @@ export function HomePage({ onStart }: HomePageProps) {
       <section className="mobile-home">
         <div className="phone-frame home-phone">
           <div className="mobile-status">9:41</div>
-          <header className="home-top">
+          <header className="home-top home-top-centered">
             <Logo />
-            <Bell size={24} />
           </header>
           <section className="home-content">
             <h1>Pré-análise do imóvel antes da retificação</h1>
