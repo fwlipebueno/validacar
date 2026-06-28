@@ -874,7 +874,7 @@
 }
 
 .property-entry-modal {
-  width: min(100%, 460px);
+  width: min(100%, 520px);
   border: 1px solid var(--gray-200);
   border-radius: 22px;
   background: #fff;
@@ -899,7 +899,7 @@
 
 .property-entry-modal form {
   display: grid;
-  gap: 10px;
+  gap: 11px;
 }
 
 .property-entry-modal label {
@@ -923,6 +923,23 @@
 .property-entry-modal input:focus {
   border-color: rgba(8, 124, 62, 0.44);
   box-shadow: 0 0 0 4px rgba(8, 124, 62, 0.1);
+}
+
+.modal-field {
+  display: grid;
+  gap: 6px;
+}
+
+.modal-field small {
+  color: #647184;
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.modal-field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
 .modal-close-button {
@@ -958,6 +975,76 @@
   padding: 12px;
 }
 
+.complementary-validations {
+  border: 1px solid #dce7df;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #fbfefd 0%, #f7fbf8 100%);
+  display: grid;
+  gap: 10px;
+  padding: 13px;
+}
+
+.complementary-validations-header {
+  display: block;
+}
+
+.complementary-validations h3 {
+  margin: 0 0 4px;
+  color: var(--ink-900);
+  font-size: 15px;
+}
+
+.complementary-validations p {
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.validation-check-list {
+  display: grid;
+  gap: 7px;
+}
+
+.validation-check-item {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  gap: 9px;
+  align-items: center;
+}
+
+.validation-check-item svg {
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  background: #ecf8f1;
+  color: var(--green-800);
+  padding: 5px;
+}
+
+.validation-check-item strong {
+  color: var(--ink-900);
+  display: block;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.validation-check-item small {
+  color: #5e6879;
+  display: block;
+  font-size: 12px;
+  line-height: 1.35;
+  margin-top: 1px;
+}
+
+.validation-check-item > span {
+  border-radius: 999px;
+  background: var(--green-050);
+  color: var(--green-900);
+  font-size: 11px;
+  font-weight: 900;
+  padding: 5px 8px;
+  white-space: nowrap;
+}
+
 .modal-error,
 .modal-success {
   border-radius: 10px;
@@ -980,6 +1067,32 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
+}
+
+@media (max-width: 560px) {
+  .property-entry-modal {
+    max-height: calc(100vh - 32px);
+    overflow: auto;
+    padding: 20px;
+  }
+
+  .modal-field-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .validation-check-item {
+    align-items: start;
+    grid-template-columns: 28px minmax(0, 1fr);
+  }
+
+  .validation-check-item > span {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .modal-actions {
+    grid-template-columns: 1fr;
+  }
 }
 
 .soft-mobile-action {
