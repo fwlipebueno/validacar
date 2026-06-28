@@ -30,6 +30,7 @@ build/
 dist/
 out/
 .next/
+*.tsbuildinfo
 
 # Temporary files
 tmp/

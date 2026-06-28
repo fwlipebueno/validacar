@@ -1,0 +1,169 @@
+{
+  "propertyName": "Lote 56 e 57 da Quadra nº 13",
+  "owner": "Equipe ValidaCAR",
+  "responsible": "Técnico responsável",
+  "carCode": "MG-3102303-7B3A.4C91.22F0.9D87.51EA",
+  "municipality": "Alvinópolis",
+  "state": "MG",
+  "coordinates": "20°06'14.2\"S 43°03'18.6\"W",
+  "sicarStatus": "Em análise",
+  "analysisCondition": "Documentos e restrições em revisão",
+  "canRectify": false,
+  "rectificationMessage": "Retificação indisponível no momento. Aguarde liberação do sistema.",
+  "declaredAreaHa": 7.25,
+  "calculatedAreaHa": 7.08,
+  "polygon": {
+    "type": "Feature",
+    "properties": {
+      "name": "Perímetro do imóvel"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [-43.0551, -20.10355],
+          [-43.05395, -20.10272],
+          [-43.05236, -20.10298],
+          [-43.05074, -20.10355],
+          [-43.04998, -20.10482],
+          [-43.05055, -20.10578],
+          [-43.05224, -20.10628],
+          [-43.05386, -20.10602],
+          [-43.05545, -20.10482],
+          [-43.0551, -20.10355]
+        ]
+      ]
+    }
+  },
+  "overlap": {
+    "type": "Feature",
+    "properties": {
+      "name": "Possível sobreposição"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [-43.05578, -20.10328],
+          [-43.05408, -20.10282],
+          [-43.05436, -20.10428],
+          [-43.05552, -20.10482],
+          [-43.05578, -20.10328]
+        ]
+      ]
+    }
+  },
+  "restrictedArea": {
+    "type": "Feature",
+    "properties": {
+      "name": "Área sensível APP/RL"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [-43.05072, -20.10472],
+          [-43.05005, -20.10494],
+          [-43.05042, -20.1054],
+          [-43.05105, -20.1052],
+          [-43.05072, -20.10472]
+        ]
+      ]
+    }
+  },
+  "alerts": [
+    {
+      "id": 1,
+      "title": "Possível sobreposição",
+      "severity": "Alta",
+      "summary": "Sobreposição com imóvel vizinho detectada na região do perímetro.",
+      "explanation": "Há uma área do perímetro que parece avançar sobre uma região vizinha. Antes de tentar retificar, revise o desenho do imóvel e confirme os limites com a documentação técnica.",
+      "action": "Revisar e ajustar o perímetro do imóvel.",
+      "color": "red",
+      "position": [-20.10372, -43.05472]
+    },
+    {
+      "id": 2,
+      "title": "Área divergente",
+      "severity": "Média",
+      "summary": "Diferença de 0,17 ha entre a área declarada e a área calculada.",
+      "explanation": "A área informada no cadastro não bate com a estimativa calculada pelo polígono. Essa diferença pode indicar erro no perímetro ou dado cadastral desatualizado.",
+      "action": "Conferir área declarada e cálculo do perímetro.",
+      "color": "orange",
+      "position": [-20.10422, -43.05055]
+    },
+    {
+      "id": 3,
+      "title": "Reserva Legal ausente ou inconsistente",
+      "severity": "Média",
+      "summary": "Reserva Legal não identificada ou com área inferior ao mínimo esperado.",
+      "explanation": "O demonstrativo técnico aponta inconsistência nas informações de Reserva Legal. Valide se a área existe, se está corretamente declarada e se precisa de ajuste.",
+      "action": "Revisar APP e Reserva Legal.",
+      "color": "orange",
+      "position": [-20.10508, -43.05072]
+    },
+    {
+      "id": 4,
+      "title": "Retificação indisponível no momento",
+      "severity": "Alta",
+      "summary": "Sistema do SICAR não permite retificação para este imóvel no momento.",
+      "explanation": "Mesmo com os ajustes identificados, o fluxo oficial pode estar bloqueado. A recomendação é preparar as informações e acompanhar a liberação.",
+      "action": "Acompanhar a Central de Mensagens e aguardar liberação.",
+      "color": "red",
+      "position": [-20.10572, -43.05245]
+    },
+    {
+      "id": 5,
+      "title": "Mensagem técnica sem orientação clara",
+      "severity": "Baixa",
+      "summary": "Há mensagens técnicas sem ação orientada na Central de Mensagens.",
+      "explanation": "As mensagens ajudam a entender o histórico, mas não deixam claro o próximo passo. O checklist organiza essas ações em ordem prática.",
+      "action": "Separar documentos e revisar mensagens pendentes.",
+      "color": "green",
+      "position": [-20.10545, -43.05422]
+    }
+  ],
+  "checklist": [
+    {
+      "id": "review-perimeter",
+      "label": "Revisar perímetro do imóvel",
+      "status": "done"
+    },
+    {
+      "id": "check-declared-area",
+      "label": "Conferir área declarada",
+      "status": "done"
+    },
+    {
+      "id": "check-overlap",
+      "label": "Verificar sobreposição",
+      "status": "done"
+    },
+    {
+      "id": "review-app-rl",
+      "label": "Revisar APP/Reserva Legal",
+      "status": "pending"
+    },
+    {
+      "id": "watch-messages",
+      "label": "Acompanhar Central de Mensagens",
+      "status": "pending"
+    },
+    {
+      "id": "wait-rectification",
+      "label": "Aguardar liberação da retificação",
+      "status": "pending"
+    }
+  ],
+  "report": {
+    "status": "Diagnóstico orientativo concluído",
+    "priority": "Média",
+    "recommendation": "Revise e ajuste o perímetro do imóvel, trate a sobreposição identificada e valide as informações de Reserva Legal para habilitar a retificação no SICAR.",
+    "shareSummary": "Foram identificados 5 alertas que impedem a retificação neste momento, sendo 2 de alta prioridade e 2 de média. O principal ponto é a sobreposição com área vizinha e a divergência de área. Siga as recomendações para concluir o processo com segurança.",
+    "nextSteps": [
+      "Revisar e ajustar o perímetro",
+      "Tratar sobreposição identificada",
+      "Validar informações de Reserva Legal"
+    ]
+  }
+}
